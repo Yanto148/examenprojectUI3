@@ -6,7 +6,7 @@ class LijstView extends React.Component
     render()
     {
         let style = {
-            "text-align": "left"
+            "textAlign": "left"
         };
         return(
             <div className = "App" style={this.props.containerStyle}>

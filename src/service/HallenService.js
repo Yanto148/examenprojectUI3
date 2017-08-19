@@ -10,3 +10,9 @@ export function getHallenFromBackend()
         .then((res) => {return res.json()})
         .then((resJson) => {return resJson.hallen});
 }
+
+export function getHallFromBackend(id)
+{
+    return fetch(BASE_PATH + 'hal' + id + '.json')
+        .then((res) => {return res.json()});
+}

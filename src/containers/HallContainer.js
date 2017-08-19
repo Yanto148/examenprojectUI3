@@ -1,124 +1,100 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router'
+import React , {Component} from 'react';
 import * as HallenService from "../service/HallenService";
-import Plattegrond from '../layouts/PlattegrondView';
-import Lijst from '../layouts/LijstView';
+import Hall from '../layouts/HallView';
 
-class PlattegrondContainer extends React.Component
+class HallContainer extends React.Component
 {
     constructor(props)
     {
         super(props);
         this.state = {
-            hallenSet: [],
-            styles: [],
-            oppervlaktes: [],
-            aantalApparaten: [],
-            aantalActies: [],
-            activePage: 'Plattegrond',
-            containerStyle : {
-                position: "relative",
-                width: "1000px",
-                margin: "20px auto"
-            }
+            hallInfo: {},
+            apparaten: [],
+            categorien: [],
+            style: {},
+            imgSrc: [],
+            positions: []
         }
     }
 
     componentDidMount()
     {
-        HallenService.getHallenFromBackend()
-            .then(hallen => {this.setState({hallenSet: hallen})})
-            .then(() => this.setStyles(this.state.hallenSet))
-            .then(() => this.setOppervlaktes(this.state.hallenSet))
-            .then(() => this.setAantalApparaten(this.state.hallenSet))
-            .then(() => this.setAantalActies(this.state.hallenSet));
+        HallenService.getHallFromBackend(this.props.params.hallId)
+            .then((hal) => {
+                this.setState({hallInfo: hal});
+                return hal;
+            })
+            .then((hal) => {
+                this.setStyle(hal);
+                return hal;
+            })
+            .then((hal) => this.setApparaten(hal))
+            .then(() => this.setCategorien())
+            .then(() => this.setPositions());
+            //.then(() => console.log(this.state));
     }
 
-    setOppervlaktes(hallen)
+    setStyle(hal)
     {
-        hallen.forEach((hal) => {
-            let width = hal.width.split("px");
-            let height = hal.height.split("px");
-            let oppervlakte = (width[0] * height[0]) / 100;
-            this.setState((prevSate, props) => {this.state.oppervlaktes.push(oppervlakte)});
+        let style = {
+            width: hal.width,
+            height: hal.height,
+            border: "1px solid black",
+            position: "relative",
+            margin: "0 auto"
+        };
+        this.setState({style: style});
+    }
+
+    setCategorien()
+    {
+        this.state.apparaten.forEach((apparaat) =>
+        {
+            if (apparaat.categorie === 'machine')
+            {
+                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/conveyor.png')});
+                //console.log(this.state.imgSrc);
+            }
+            else if (apparaat.categorie === 'band')
+            {
+                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/assembly-line.png')})
+            }
+            else if (apparaat.categorie === 'lamp')
+            {
+                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/small-light-bulb.png')})
+            }
+        });
+        console.log(this.state.imgSrc);
+    }
+
+    setApparaten(hal)
+    {
+        hal.apparaten.forEach((apparaat) =>
+        {
+            this.setState((prevState, props) => {this.state.apparaten.push(apparaat)});
         });
     }
 
-    setAantalApparaten(hallen)
+    setPositions()
     {
-        hallen.forEach((hal) => {
-            let aantalApparaten = hal.apparaten.length;
-            this.setState((prevSatet, props) => this.state.aantalApparaten.push(aantalApparaten));
-        });
-    }
 
-    setAantalActies(hallen)
-    {
-        let aantal = 0;
-        hallen.forEach((hal) => {
-            aantal = 0;
-            hal.apparaten.forEach((apparaat) => {
-                let datumStrings = apparaat.eerstVolgendeActie.datum.split('/');
-                let eerstVolgendeActieDatum = new Date(datumStrings[2], datumStrings[1] - 1, datumStrings[0]);
-                let currentDay = new Date();
-
-                let eerstVolgendeActieDatumSec = eerstVolgendeActieDatum.getTime();
-                let currentDaySec = currentDay.getTime();
-
-                let daysBetween = (eerstVolgendeActieDatumSec - currentDaySec) / 86400000;
-
-                if ((daysBetween) < 2)
-                {
-                    aantal++;
-                }
-            });
-            this.setState((prevSate, props) => {this.state.aantalActies.push(aantal)});
-        });
-    }
-
-    setStyles(hallen)
-    {
-        hallen.forEach((hal) => {
-            let style = {
-                left: hal.x,
-                top: hal.y,
-                width: hal.width,
-                height: hal.height,
-                border: "1px solid black",
+        this.state.apparaten.forEach((apparaat) =>
+        {
+            let postion = {
+                left: apparaat.x,
+                top: apparaat.y,
                 position: "absolute"
             };
-            this.setState((prevState, props) => {this.state.styles.push(style)})
+            this.setState((prevState, props) => {this.state.positions.push(postion)});
         });
     }
 
-    switchLayout()
+    render()
     {
-        if (this.state.activePage === 'Plattegrond')
-        {
-            this.setState({activePage : 'Lijst'});
-        }
-        else if (this.state.activePage === 'Lijst')
-        {
-            this.setState({activePage : 'Plattegrond'});
-        }
-    }
-
-    render() {
-        let partial;
-        if(this.state.activePage === 'Plattegrond')
-        {
-            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()}/>;
-        }
-        else if (this.state.activePage === 'Lijst')
-        {
-            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()}/>;
-        }
-        return (
-            <div>
-                {partial}
-            </div>
+        return(
+          <Hall {...this.state}/>
         );
     }
 }
 
-export default PlattegrondContainer;
+export default HallContainer;

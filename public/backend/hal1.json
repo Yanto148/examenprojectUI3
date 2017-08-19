@@ -2,7 +2,63 @@
   "id": 1,
   "name": "Hal 1",
   "x": 0,
-  "y": 0,
-  "width": "333px",
-  "height": "300px"
+  "y": 30,
+  "width": "330px",
+  "height": "300px",
+  "apparaten": [
+    {
+      "id": 11,
+      "categorie": "machine",
+      "naam": "Drukpers",
+      "omschrijving": "Dit is een drukpers",
+      "laatst-uitgevoerde-actie": {
+        "datum": "19/08/2017",
+        "type": "nazicht",
+        "omschrijving": "Drukpers nagekeken"
+      },
+      "eerstVolgendeActie": {
+        "datum": "21/08/2017",
+        "type": "vervanging",
+        "omschrijving": "Drukpers is aan vervanging toe"
+      },
+      "x": 5,
+      "y": 5
+    },
+    {
+      "id": 12,
+      "categorie": "band",
+      "naam": "Productieband",
+      "omschrijving": "Dit is de productieband",
+      "laatst-uitgevoerde-actie": {
+        "datum": "19/08/2017",
+        "type": "nazicht",
+        "omschrijving": "Productieband nagekeken"
+      },
+      "eerstVolgendeActie": {
+        "datum": "21/08/2017",
+        "type": "vervanging",
+        "omschrijving": "Productieband is aan vervanging toe"
+      },
+      "x": 150,
+      "y": 150
+    },
+    {
+      "id": 13,
+      "categorie": "lamp",
+      "naam": "Lamp",
+      "omschrijving": "Dit is een lamp",
+      "laatst-uitgevoerde-actie": {
+        "datum": "19/08/2017",
+        "type": "nazicht",
+        "omschrijving": "Lamp nagekeken"
+      },
+      "eerstVolgendeActie": {
+        "datum": "19/08/2018",
+        "type": "nazicht",
+        "omschrijving": "Lamp moet opnieuw nagekeken worden"
+      },
+      "x": 200,
+      "y": 150
+    }
+  ]
 }

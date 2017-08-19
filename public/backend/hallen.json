@@ -279,8 +279,8 @@
               "type": "nazicht",
               "omschrijving": "Lamp nog eens nakijken"
             },
-            "x": 5,
-            "y": 5
+            "x": 250,
+            "y": 150
           },
           {
             "id": 52,
@@ -298,7 +298,7 @@
               "omschrijving": "Verpakkingsband opnieuw nakijken"
             },
             "x": 5,
-            "y": 5
+            "y": 150
           }
         ]
       }
