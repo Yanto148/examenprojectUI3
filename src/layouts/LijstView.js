@@ -18,6 +18,7 @@ class LijstView extends React.Component
                                 <li>Oppervlakte: {this.props.oppervlaktes[i]} m²</li>
                                 <li>Aantal apparaten: {this.props.aantalApparaten[i]}</li>
                                 <li>Aantal uit te voeren acties: {this.props.aantalActies[i]}</li>
+                                <li><Link to={'/hall/' + hal.id}>Details</Link></li>
                             </ul>
                         </li>
                     )}

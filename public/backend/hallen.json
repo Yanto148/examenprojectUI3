@@ -24,7 +24,8 @@
                 "omschrijving": "Drukpers is aan vervanging toe"
               },
               "x": 5,
-              "y": 5
+              "y": 5,
+              "imgSrc" : "../assets/icons/conveyor.png"
             },
             {
               "id": 12,
@@ -42,7 +43,8 @@
                 "omschrijving": "Productieband is aan vervanging toe"
               },
               "x": 150,
-              "y": 150
+              "y": 150,
+              "imgSrc" : "../assets/icons/assembly-line.png"
             },
             {
               "id": 13,
@@ -60,7 +62,8 @@
                 "omschrijving": "Lamp moet opnieuw nagekeken worden"
               },
               "x": 200,
-              "y": 150
+              "y": 150,
+              "imgSrc" : "../assets/icons/small-light-bulb.png"
             }
           ]
       },
@@ -88,7 +91,8 @@
               "omschrijving": "Nakijken of de vervangen onderdelen goed werken"
             },
             "x": 5,
-            "y": 5
+            "y": 5,
+            "imgSrc" : "../assets/icons/conveyor.png"
           },
           {
             "id": 22,
@@ -106,7 +110,8 @@
               "omschrijving": "Enkele onderdelen lijken aan vervanging toe, deze onderdelen extra nakijken"
             },
             "x": 300,
-            "y": 270
+            "y": 270,
+            "imgSrc" : "../assets/icons/assembly-line.png"
           }
         ]
       },
@@ -134,7 +139,8 @@
               "omschrijving": "Lamp moet binnenkort vervangen worden"
             },
             "x": 50,
-            "y": 150
+            "y": 150,
+            "imgSrc" : "../assets/icons/small-light-bulb.png"
           },
           {
             "id": 32,
@@ -152,7 +158,8 @@
               "omschrijving": "Prepress is dringend aan vervanging toe"
             },
             "x": 100,
-            "y": 150
+            "y": 150,
+            "imgSrc" : "../assets/icons/conveyor.png"
           },
           {
             "id": 33,
@@ -170,7 +177,8 @@
               "omschrijving": "Enkele onderdelen lijken aan vervanging toe, kijk deze extra na"
             },
             "x": 200,
-            "y": 200
+            "y": 200,
+            "imgSrc" : "../assets/icons/assembly-line.png"
           }
         ]
       },
@@ -198,7 +206,8 @@
               "omschrijving": "Lamp nakijken"
             },
             "x": 5,
-            "y": 5
+            "y": 5,
+            "imgSrc" : "../assets/icons/small-light-bulb.png"
           },
           {
             "id": 42,
@@ -216,7 +225,8 @@
               "omschrijving": "Bureau lamp is aan vervanging toe"
             },
             "x": 150,
-            "y": 150
+            "y": 150,
+            "imgSrc" : "../assets/icons/small-light-bulb.png"
           },
           {
             "id": 43,
@@ -234,7 +244,8 @@
               "omschrijving": "Digitale drukpers moet opnieuw nagekeken worden"
             },
             "x": 20,
-            "y": 20
+            "y": 20,
+            "imgSrc" : "../assets/icons/conveyor.png"
           },
           {
             "id": 44,
@@ -252,7 +263,8 @@
               "omschrijving": "Prodcutieband moet nagekeken worden"
             },
             "x": 250,
-            "y": 250
+            "y": 250,
+            "imgSrc" : "../assets/icons/assembly-line.png"
           }
         ]
       },
@@ -280,7 +292,8 @@
               "omschrijving": "Lamp nog eens nakijken"
             },
             "x": 250,
-            "y": 150
+            "y": 150,
+            "imgSrc" : "../assets/icons/small-light-bulb.png"
           },
           {
             "id": 52,
@@ -298,7 +311,8 @@
               "omschrijving": "Verpakkingsband opnieuw nakijken"
             },
             "x": 5,
-            "y": 150
+            "y": 150,
+            "imgSrc" : "../assets/icons/assembly-line.png"
           }
         ]
       }

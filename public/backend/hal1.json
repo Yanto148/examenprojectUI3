@@ -22,7 +22,8 @@
         "omschrijving": "Drukpers is aan vervanging toe"
       },
       "x": 5,
-      "y": 5
+      "y": 5,
+      "imgSrc" : "../assets/icons/conveyor.png"
     },
     {
       "id": 12,
@@ -40,7 +41,8 @@
         "omschrijving": "Productieband is aan vervanging toe"
       },
       "x": 150,
-      "y": 150
+      "y": 150,
+      "imgSrc" : "../assets/icons/assembly-line.png"
     },
     {
       "id": 13,
@@ -58,7 +60,8 @@
         "omschrijving": "Lamp moet opnieuw nagekeken worden"
       },
       "x": 200,
-      "y": 150
+      "y": 150,
+      "imgSrc" : "../assets/icons/small-light-bulb.png"
     }
   ]
 }

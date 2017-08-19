@@ -29,9 +29,6 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
-            .then(() => this.setCategorien())
-            .then(() => this.setPositions());
-            //.then(() => console.log(this.state));
     }
 
     setStyle(hal)
@@ -46,46 +43,11 @@ class HallContainer extends React.Component
         this.setState({style: style});
     }
 
-    setCategorien()
-    {
-        this.state.apparaten.forEach((apparaat) =>
-        {
-            if (apparaat.categorie === 'machine')
-            {
-                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/conveyor.png')});
-                //console.log(this.state.imgSrc);
-            }
-            else if (apparaat.categorie === 'band')
-            {
-                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/assembly-line.png')})
-            }
-            else if (apparaat.categorie === 'lamp')
-            {
-                this.setState((prevState, props) => {this.state.imgSrc.push('../../assets/icons/small-light-bulb.png')})
-            }
-        });
-        console.log(this.state.imgSrc);
-    }
-
     setApparaten(hal)
     {
         hal.apparaten.forEach((apparaat) =>
         {
             this.setState((prevState, props) => {this.state.apparaten.push(apparaat)});
-        });
-    }
-
-    setPositions()
-    {
-
-        this.state.apparaten.forEach((apparaat) =>
-        {
-            let postion = {
-                left: apparaat.x,
-                top: apparaat.y,
-                position: "absolute"
-            };
-            this.setState((prevState, props) => {this.state.positions.push(postion)});
         });
     }
 

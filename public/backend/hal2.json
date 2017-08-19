@@ -22,7 +22,8 @@
         "omschrijving": "Nakijken of de vervangen onderdelen goed werken"
       },
       "x": 5,
-      "y": 5
+      "y": 5,
+      "imgSrc" : "../assets/icons/conveyor.png"
     },
     {
       "id": 22,
@@ -40,7 +41,8 @@
         "omschrijving": "Enkele onderdelen lijken aan vervanging toe, deze onderdelen extra nakijken"
       },
       "x": 300,
-      "y": 270
+      "y": 270,
+      "imgSrc" : "../assets/icons/assembly-line.png"
     }
   ]
 }

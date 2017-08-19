@@ -17,11 +17,18 @@ class HallView extends React.Component{
         return(
             <div className="App" style={this.props.style}>
                 {this.props.hallInfo.name}
-                {this.props.apparaten.map((apparaat, i) =>
-                <div style={this.props.positions[i]}>
-                    <img key={i} src={this.props.imgSrc[i]}></img>
-                </div>
-                )}
+                {this.props.apparaten.map(apparaat => {
+                    let style = {
+                        left: apparaat.x,
+                        top: apparaat.y,
+                        position: "absolute"
+                    };
+                    return (
+                        <div key={apparaat.id} style={style}>
+                            <img src={apparaat.imgSrc}/>
+                        </div>
+                    );
+                })}
             </div>
         );
     }
