@@ -133,62 +133,44 @@
               "type": "vervanging",
               "omschrijving": "Lamp moet binnenkort vervangen worden"
             },
-            "x": 5,
-            "y": 5
+            "x": 50,
+            "y": 150
           },
           {
             "id": 32,
-            "categorie": "lamp",
-            "naam": "Bureau lamp",
-            "omschrijving": "Burea lamp aan de bureau",
+            "categorie": "machine",
+            "naam": "Prepress",
+            "omschrijving": "Dit is de prepress",
             "laatst-uitgevoerde-actie": {
               "datum": "15/08/2017",
               "type": "nazicht",
-              "omschrijving": "Lamp nagekeken"
+              "omschrijving": "Prepress nagekeken"
             },
             "eerstVolgendeActie": {
               "datum": "20/08/2017",
               "type": "vervanging",
-              "omschrijving": "Lamp is dringend aan vervanging toe"
+              "omschrijving": "Prepress is dringend aan vervanging toe"
             },
-            "x": 5,
-            "y": 5
+            "x": 100,
+            "y": 150
           },
           {
             "id": 33,
-            "categorie": "lamp",
-            "naam": "Lamp",
-            "omschrijving": "Dit is een lamp",
+            "categorie": "band",
+            "naam": "Productieband voor de prepress",
+            "omschrijving": "Dit is de productieband voor de prepress",
             "laatst-uitgevoerde-actie": {
               "datum": "19/08/2017",
               "type": "nazicht",
-              "omschrijving": "Lamp nagekeken"
+              "omschrijving": "Band nagekeken"
             },
             "eerstVolgendeActie": {
-              "datum": "19/08/2018",
+              "datum": "19/12/2018",
               "type": "nazicht",
-              "omschrijving": "Lamp moet opnieuw nagekeken worden"
+              "omschrijving": "Enkele onderdelen lijken aan vervanging toe, kijk deze extra na"
             },
-            "x": 5,
-            "y": 5
-          },
-          {
-            "id": 34,
-            "categorie": "lamp",
-            "naam": "Lamp",
-            "omschrijving": "Dit is een lamp",
-            "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
-              "type": "nazicht",
-              "omschrijving": "Lamp nagekeken"
-            },
-            "eerstVolgendeActie": {
-              "datum": "19/08/2018",
-              "type": "nazicht",
-              "omschrijving": "Lamp moet opnieuw nagekeken worden"
-            },
-            "x": 5,
-            "y": 5
+            "x": 200,
+            "y": 200
           }
         ]
       },
@@ -201,58 +183,76 @@
         "height": "300px",
         "apparaten": [
           {
-            "id": 11,
-            "categorie": "machine",
-            "naam": "Drukpers",
-            "omschrijving": "Dit is een drukpers",
-            "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
-              "type": "nazicht",
-              "omschrijving": "Drukpers nagekeken"
-            },
-            "eerstVolgendeActie": {
-              "datum": "21/08/2017",
-              "type": "vervanging",
-              "omschrijving": "Drukpers is aan vervanging toe"
-            },
-            "x": 5,
-            "y": 5
-          },
-          {
-            "id": 12,
-            "categorie": "band",
-            "naam": "Productieband",
-            "omschrijving": "Dit is de productieband",
-            "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
-              "type": "nazicht",
-              "omschrijving": "Productieband nagekeken"
-            },
-            "eerstVolgendeActie": {
-              "datum": "21/08/2017",
-              "type": "vervanging",
-              "omschrijving": "Productieband is aan vervanging toe"
-            },
-            "x": 5,
-            "y": 5
-          },
-          {
-            "id": 13,
+            "id": 41,
             "categorie": "lamp",
-            "naam": "Lamp",
-            "omschrijving": "Dit is een lamp",
+            "naam": "Grote lamp",
+            "omschrijving": "Grote lamp die de digitale drukpers verlicht",
             "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
+              "datum": "19/05/2017",
+              "type": "vervanging",
+              "omschrijving": "Lamp vervangen"
+            },
+            "eerstVolgendeActie": {
+              "datum": "19/05/2018",
+              "type": "nazicht",
+              "omschrijving": "Lamp nakijken"
+            },
+            "x": 5,
+            "y": 5
+          },
+          {
+            "id": 42,
+            "categorie": "lamp",
+            "naam": "Bureau lamp",
+            "omschrijving": "Bureau lamp aan de bureau",
+            "laatst-uitgevoerde-actie": {
+              "datum": "04/07/2016",
               "type": "nazicht",
               "omschrijving": "Lamp nagekeken"
             },
             "eerstVolgendeActie": {
-              "datum": "19/08/2018",
-              "type": "nazicht",
-              "omschrijving": "Lamp moet opnieuw nagekeken worden"
+              "datum": "21/08/2017",
+              "type": "vervanging",
+              "omschrijving": "Bureau lamp is aan vervanging toe"
             },
-            "x": 5,
-            "y": 5
+            "x": 150,
+            "y": 150
+          },
+          {
+            "id": 43,
+            "categorie": "machine",
+            "naam": "Digitale drukpers",
+            "omschrijving": "Dit is de allernieuwste digitale drukpers",
+            "laatst-uitgevoerde-actie": {
+              "datum": "1/06/2017",
+              "type": "nazicht",
+              "omschrijving": "Digitale drukpers nagekeken"
+            },
+            "eerstVolgendeActie": {
+              "datum": "22/08/2018",
+              "type": "nazicht",
+              "omschrijving": "Digitale drukpers moet opnieuw nagekeken worden"
+            },
+            "x": 20,
+            "y": 20
+          },
+          {
+            "id": 44,
+            "categorie": "band",
+            "naam": "Productieband van de digitale drukpers",
+            "omschrijving": "Productieband die de digitale drukpers ondersteunt",
+            "laatst-uitgevoerde-actie": {
+              "datum": "9/08/2017",
+              "type": "vervanging",
+              "omschrijving": "Bepaalde onderdelen vervangen"
+            },
+            "eerstVolgendeActie": {
+              "datum": "19/10/2018",
+              "type": "nazicht",
+              "omschrijving": "Prodcutieband moet nagekeken worden"
+            },
+            "x": 250,
+            "y": 250
           }
         ]
       },
@@ -265,55 +265,37 @@
         "height": "300px",
         "apparaten": [
           {
-            "id": 11,
-            "categorie": "machine",
-            "naam": "Drukpers",
-            "omschrijving": "Dit is een drukpers",
-            "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
-              "type": "nazicht",
-              "omschrijving": "Drukpers nagekeken"
-            },
-            "eerstVolgendeActie": {
-              "datum": "21/08/2017",
-              "type": "vervanging",
-              "omschrijving": "Drukpers is aan vervanging toe"
-            },
-            "x": 5,
-            "y": 5
-          },
-          {
-            "id": 12,
-            "categorie": "band",
-            "naam": "Productieband",
-            "omschrijving": "Dit is de productieband",
-            "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
-              "type": "nazicht",
-              "omschrijving": "Productieband nagekeken"
-            },
-            "eerstVolgendeActie": {
-              "datum": "21/08/2017",
-              "type": "vervanging",
-              "omschrijving": "Productieband is aan vervanging toe"
-            },
-            "x": 5,
-            "y": 5
-          },
-          {
-            "id": 13,
+            "id": 51,
             "categorie": "lamp",
-            "naam": "Lamp",
-            "omschrijving": "Dit is een lamp",
+            "naam": "Lamp magazijn",
+            "omschrijving": "Lamp die het magazijn verlicht",
             "laatst-uitgevoerde-actie": {
-              "datum": "19/08/2017",
+              "datum": "19/08/2016",
               "type": "nazicht",
               "omschrijving": "Lamp nagekeken"
             },
             "eerstVolgendeActie": {
-              "datum": "19/08/2018",
+              "datum": "21/11/2017",
               "type": "nazicht",
-              "omschrijving": "Lamp moet opnieuw nagekeken worden"
+              "omschrijving": "Lamp nog eens nakijken"
+            },
+            "x": 5,
+            "y": 5
+          },
+          {
+            "id": 52,
+            "categorie": "band",
+            "naam": "Verpakkingsband",
+            "omschrijving": "Band voor het verpakken",
+            "laatst-uitgevoerde-actie": {
+              "datum": "15/08/2017",
+              "type": "nazicht",
+              "omschrijving": "Verpakkingsband nagekeken"
+            },
+            "eerstVolgendeActie": {
+              "datum": "01/04/2018",
+              "type": "nazicht",
+              "omschrijving": "Verpakkingsband opnieuw nakijken"
             },
             "x": 5,
             "y": 5
