@@ -18,6 +18,13 @@ class DeviceView extends React.Component
         <div className="App">
             <form>
                 <label>Naam:</label> <input id="naam" name="naam" type="text" value={this.props.naam} onChange={(e) => this.props.handleChange(e)}/>
+                <p><label>laatstUitgevoerdeActieDatum:</label> <input id="laatstUitgevoerdeActieDatum" name="laatstUitgevoerdeActieDatum" type="text" value={this.props.laatstUitgevoerdeActieDatum} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>laatstUitgevoerdeActieType:</label> <input id="laatstUitgevoerdeActieType" name="laatstUitgevoerdeActieType" type="text" value={this.props.laatstUitgevoerdeActieType} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>laatstUitgevoerdeActieOmschrijving:</label> <input id="laatstUitgevoerdeActieOmschrijving" name="laatstUitgevoerdeActieOmschrijving" type="text" value={this.props.laatstUitgevoerdeActieOmschrijving} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>eerstVolgendeActieDatum:</label> <input id="eerstVolgendeActieDatum" name="eerstVolgendeActieDatum" type="text" value={this.props.eerstVolgendeActieDatum} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>eerstVolgendeActieType:</label> <input id="eerstVolgendeActieType" name="eerstVolgendeActieType" type="text" value={this.props.eerstVolgendeActieType} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>eerstVolgendeActieOmschrijving:</label> <input id="eerstVolgendeActieOmschrijving" name="eerstVolgendeActieOmschrijving" type="text" value={this.props.eerstVolgendeActieOmschrijving} onChange={(e) => this.props.handleChange(e)}/></p>
+                <p><label>Actie uitgevoerd: </label><input type="checkbox" onClick={(e) => this.props.actionCompleted()}/></p>
             </form>
 
         </div>

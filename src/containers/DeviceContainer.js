@@ -9,11 +9,18 @@ class DeviceContainer extends React.Component
         super(props);
         this.state = {
             device: {},
+            id: '',
+            categorie: '',
             naam: '',
-            laatstUitgevoerdeActie: {},
-            eerstVolgendeActie: {},
-            value: '',
-            datumLaatsteActie: ''
+            omschrijving: '',
+            // laatstUitgevoerdeActie: {},
+            laatstUitgevoerdeActieDatum: '',
+            laatstUitgevoerdeActieType: '',
+            laatstUitgevoerdeActieOmschrijving: '',
+            // eerstVolgendeActie: {},
+            eerstVolgendeActieDatum: '',
+            eerstVolgendeActieType: '',
+            eerstVolgendeActieOmschrijving: '',
         };
         // this.handleChange = this.handleChange.bind(this);
         // this.handleLaatsteActieChange = this.handleLaatsteActieChange.bind(this);
@@ -28,9 +35,18 @@ class DeviceContainer extends React.Component
                     if (apparaat.id == this.props.params.deviceId)
                     {
                         this.setState({device: apparaat});
-                        this.setState({naam: {apparaat}});
-                        this.setState({laatstUitgevoerdeActie: apparaat.laatstUitgevoerdeActie});
-                        this.setState({eerstVolgendeActie: apparaat.eerstVolgendeActie});
+                        this.setState({naam: apparaat.id});
+                        this.setState({naam: apparaat.categorie});
+                        this.setState({naam: apparaat.naam});
+                        this.setState({naam: apparaat.omschrijving});
+                        // this.setState({laatstUitgevoerdeActie: apparaat.laatstUitgevoerdeActie});
+                        this.setState({laatstUitgevoerdeActieDatum: apparaat.laatstUitgevoerdeActie.datum});
+                        this.setState({laatstUitgevoerdeActieType: apparaat.laatstUitgevoerdeActie.type});
+                        this.setState({laatstUitgevoerdeActieOmschrijving: apparaat.laatstUitgevoerdeActie.omschrijving});
+                        // this.setState({eerstVolgendeActie: apparaat.eerstVolgendeActie});
+                        this.setState({eerstVolgendeActieDatum: apparaat.eerstVolgendeActie.datum});
+                        this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
+                        this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
                     }
                 }) ;
             });
@@ -38,8 +54,12 @@ class DeviceContainer extends React.Component
 
     actionCompleted()
     {
-        const eerstVolgendeActie = this.state.eerstVolgendeActie;
-        this.setState({laatstUitgevoerdeActie : eerstVolgendeActie});
+        const eerstVolgendeActieDatum = this.state.eerstVolgendeActieDatum;
+        const eerstVolgendeActieType = this.state.eerstVolgendeActieType;
+        const eerstVolgendeActieOmschrijving = this.state.eerstVolgendeActieOmschrijving;
+        this.setState({laatstUitgevoerdeActieDatum : this.state.eerstVolgendeActieDatum});
+        this.setState({laatstUitgevoerdeActieType : eerstVolgendeActieType});
+        this.setState({laatstUitgevoerdeActieOmschrijving : eerstVolgendeActieOmschrijving});
     }
 
     handleChange(event)
