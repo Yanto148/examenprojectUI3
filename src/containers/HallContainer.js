@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
-import * as HallenService from "../service/HallenService";
+import * as HallenService from "../service/HalService";
 import Hall from '../layouts/HallView';
+import * as Utils from '../service/Utils';
 
 class HallContainer extends React.Component
 {
@@ -31,12 +32,15 @@ class HallContainer extends React.Component
 
     setStyle(hal)
     {
+        let width = hal.width.split("px")[0] * 2;
+        let height = hal.height.split("px")[0] * 2;
         let style = {
-            width: hal.width,
-            height: hal.height,
+            width: width,
+            height: height,
             border: "1px solid black",
             position: "relative",
-            margin: "0 auto"
+            margin: "0 auto",
+            textAlign: "center"
         };
         this.setState({style: style});
     }
@@ -53,19 +57,34 @@ class HallContainer extends React.Component
     {
         this.setState((prevState, props) =>
             this.state.apparaten.map((apparaat, i) => {
-                if (apparaat.categorie === 'machine')
+                if (apparaat.categorie === 'machine' && !Utils.checkIfNextActionIn24Hours(apparaat))
                 {
                     apparaat.imageSrc = "../../assets/icons/conveyor.png";
                     return apparaat;
                 }
-                else if (apparaat.categorie === 'lamp')
+                else if (apparaat.categorie === 'machine' && Utils.checkIfNextActionIn24Hours(apparaat))
+                {
+                    apparaat.imageSrc = "../../assets/icons/conveyor-red.png";
+                    return apparaat;
+                }
+                else if (apparaat.categorie === 'lamp' && !Utils.checkIfNextActionIn24Hours(apparaat))
                 {
                     apparaat.imageSrc = "../../assets/icons/small-light-bulb.png";
                     return apparaat;
                 }
-                else if (apparaat.categorie === 'band')
+                else if (apparaat.categorie === 'lamp' && Utils.checkIfNextActionIn24Hours(apparaat))
+                {
+                    apparaat.imageSrc = "../../assets/icons/small-light-bulb-red.png";
+                    return apparaat;
+                }
+                else if (apparaat.categorie === 'band' && !Utils.checkIfNextActionIn24Hours(apparaat))
                 {
                     apparaat.imageSrc = "../../assets/icons/assembly-line.png";
+                    return apparaat;
+                }
+                else if (apparaat.categorie === 'band' && Utils.checkIfNextActionIn24Hours(apparaat))
+                {
+                    apparaat.imageSrc = "../../assets/icons/assembly-line-red.png";
                     return apparaat;
                 }
             })

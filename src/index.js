@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Hallen from './Hallen';
-import PlattegrondContainer from './containers/HallenContainer';
+import PlattegrondContainer from './containers/HallAggregateContainer';
 import HallContainer from './containers/HallContainer';
 
 import { Router, Route, IndexRoute,browserHistory } from 'react-router';
@@ -12,10 +11,6 @@ ReactDOM.render(
         <Route path="/" component={App} >
             <IndexRoute component={PlattegrondContainer}/>
             <Route path='hall/:hallId' component={HallContainer}/>
-
-            {/*<Route path="lijst">*/}
-                {/*<IndexRoute component={LijstContainer} />*/}
-            {/*</Route>*/}
         </Route>
     </Router>
     , document.getElementById('root')

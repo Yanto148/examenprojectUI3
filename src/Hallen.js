@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import './App.css';
-import * as HallenService from "./service/HallenService";
+import * as HallenService from "./service/HalService";
 
 class Hallen extends React.Component
 {

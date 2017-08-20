@@ -10,7 +10,7 @@ class LijstView extends React.Component
         };
         return(
             <div className = "App" style={this.props.containerStyle}>
-                <p><button onClick={(e) => this.props.switchLayout()}>Plattegrond</button></p>
+                <p style={this.props.buttonStyle}><button onClick={(e) => this.props.switchLayout()}>Plattegrond</button></p>
                 <ul style={style}>
                     {this.props.hallenSet.map((hal, i) =>
                         <li key={i}>{hal.name}

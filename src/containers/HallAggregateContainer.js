@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import * as HallenService from "../service/HallenService";
-import Plattegrond from '../layouts/PlattegrondView';
-import Lijst from '../layouts/LijstView';
+import * as HallenService from "../service/HalService";
+import Plattegrond from '../layouts/BlueprintView';
+import Lijst from '../layouts/ListView';
+import * as Utils from '../service/Utils';
 
 class PlattegrondContainer extends React.Component
 {
@@ -20,6 +21,9 @@ class PlattegrondContainer extends React.Component
                 position: "relative",
                 width: "1000px",
                 margin: "20px auto"
+            },
+            buttonStyle: {
+                textAlign: "center"
             }
         }
     }
@@ -58,20 +62,26 @@ class PlattegrondContainer extends React.Component
         hallen.forEach((hal) => {
             aantal = 0;
             hal.apparaten.forEach((apparaat) => {
-                let datumStrings = apparaat.eerstVolgendeActie.datum.split('/');
-                let eerstVolgendeActieDatum = new Date(datumStrings[2], datumStrings[1] - 1, datumStrings[0]);
-                let currentDay = new Date();
-
-                let eerstVolgendeActieDatumSec = eerstVolgendeActieDatum.getTime();
-                let currentDaySec = currentDay.getTime();
-
-                let daysBetween = (eerstVolgendeActieDatumSec - currentDaySec) / 86400000;
-
-                if ((daysBetween) < 2)
+                if (Utils.checkIfNextActionIn24Hours(apparaat))
                 {
                     aantal++;
                 }
             });
+            // hal.apparaten.forEach((apparaat) => {
+            //     let datumStrings = apparaat.eerstVolgendeActie.datum.split('/');
+            //     let eerstVolgendeActieDatum = new Date(datumStrings[2], datumStrings[1] - 1, datumStrings[0]);
+            //     let currentDay = new Date();
+            //
+            //     let eerstVolgendeActieDatumSec = eerstVolgendeActieDatum.getTime();
+            //     let currentDaySec = currentDay.getTime();
+            //
+            //     let daysBetween = (eerstVolgendeActieDatumSec - currentDaySec) / 86400000;
+            //
+            //     if ((daysBetween) < 2)
+            //     {
+            //         aantal++;
+            //     }
+            // });
             this.setState((prevSate, props) => {this.state.aantalActies.push(aantal)});
         });
     }
@@ -85,7 +95,8 @@ class PlattegrondContainer extends React.Component
                 width: hal.width,
                 height: hal.height,
                 border: "1px solid black",
-                position: "absolute"
+                position: "absolute",
+                textAlign: "center"
             };
             this.setState((prevState, props) => {this.state.styles.push(style)})
         });
