@@ -11,7 +11,7 @@
       "categorie": "machine",
       "naam": "3D-Printer",
       "omschrijving": "Een van de modernste 3D-printers die er bestaat",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "1/08/2017",
         "type": "Vervanging",
         "omschrijving": "Stukken van de 3D-printer vervangen zodat hij nog beter kan printen"
@@ -29,7 +29,7 @@
       "categorie": "band",
       "naam": "3D-printer Productieband",
       "omschrijving": "Dit is de productieband voor de 3D-printer",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "1/07/2017",
         "type": "nazicht",
         "omschrijving": "Productieband nagekeken"

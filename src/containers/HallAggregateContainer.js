@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import * as HallenService from "../service/HalService";
+import * as HallenService from "../service/HallService";
 import Plattegrond from '../layouts/BlueprintView';
 import Lijst from '../layouts/ListView';
 import * as Utils from '../service/Utils';
@@ -67,21 +67,6 @@ class PlattegrondContainer extends React.Component
                     aantal++;
                 }
             });
-            // hal.apparaten.forEach((apparaat) => {
-            //     let datumStrings = apparaat.eerstVolgendeActie.datum.split('/');
-            //     let eerstVolgendeActieDatum = new Date(datumStrings[2], datumStrings[1] - 1, datumStrings[0]);
-            //     let currentDay = new Date();
-            //
-            //     let eerstVolgendeActieDatumSec = eerstVolgendeActieDatum.getTime();
-            //     let currentDaySec = currentDay.getTime();
-            //
-            //     let daysBetween = (eerstVolgendeActieDatumSec - currentDaySec) / 86400000;
-            //
-            //     if ((daysBetween) < 2)
-            //     {
-            //         aantal++;
-            //     }
-            // });
             this.setState((prevSate, props) => {this.state.aantalActies.push(aantal)});
         });
     }

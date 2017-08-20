@@ -11,7 +11,7 @@
       "categorie": "machine",
       "naam": "Drukpers",
       "omschrijving": "Dit is een drukpers",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/08/2017",
         "type": "nazicht",
         "omschrijving": "Drukpers nagekeken"
@@ -29,7 +29,7 @@
       "categorie": "band",
       "naam": "Productieband",
       "omschrijving": "Dit is de productieband",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/08/2017",
         "type": "nazicht",
         "omschrijving": "Productieband nagekeken"
@@ -47,7 +47,7 @@
       "categorie": "lamp",
       "naam": "Lamp",
       "omschrijving": "Dit is een lamp",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/08/2017",
         "type": "nazicht",
         "omschrijving": "Lamp nagekeken"

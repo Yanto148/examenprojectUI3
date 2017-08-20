@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import * as HallenService from "../service/HalService";
+import * as HallenService from "../service/HallService";
 import Hall from '../layouts/HallView';
 import * as Utils from '../service/Utils';
 

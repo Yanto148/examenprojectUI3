@@ -11,7 +11,7 @@
       "categorie": "lamp",
       "naam": "Lamp magazijn",
       "omschrijving": "Lamp die het magazijn verlicht",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/08/2016",
         "type": "nazicht",
         "omschrijving": "Lamp nagekeken"
@@ -29,7 +29,7 @@
       "categorie": "band",
       "naam": "Verpakkingsband",
       "omschrijving": "Band voor het verpakken",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "15/08/2017",
         "type": "nazicht",
         "omschrijving": "Verpakkingsband nagekeken"

@@ -11,7 +11,7 @@
       "categorie": "lamp",
       "naam": "Grote lamp",
       "omschrijving": "Grote lamp die de prepress verlicht",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "15/08/2017",
         "type": "nazicht",
         "omschrijving": "Lamp nagekeken"
@@ -29,7 +29,7 @@
       "categorie": "machine",
       "naam": "Prepress",
       "omschrijving": "Dit is de prepress",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "15/08/2017",
         "type": "nazicht",
         "omschrijving": "Prepress nagekeken"
@@ -47,7 +47,7 @@
       "categorie": "band",
       "naam": "Productieband voor de prepress",
       "omschrijving": "Dit is de productieband voor de prepress",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/08/2017",
         "type": "nazicht",
         "omschrijving": "Band nagekeken"

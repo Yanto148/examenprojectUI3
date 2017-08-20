@@ -13,7 +13,7 @@
               "categorie": "machine",
               "naam": "Drukpers",
               "omschrijving": "Dit is een drukpers",
-              "laatst-uitgevoerde-actie": {
+              "laatstUitgevoerdeActie": {
                 "datum": "19/08/2017",
                 "type": "nazicht",
                 "omschrijving": "Drukpers nagekeken"
@@ -31,7 +31,7 @@
               "categorie": "band",
               "naam": "Productieband",
               "omschrijving": "Dit is de productieband",
-              "laatst-uitgevoerde-actie": {
+              "laatstUitgevoerdeActie": {
                 "datum": "19/08/2017",
                 "type": "nazicht",
                 "omschrijving": "Productieband nagekeken"
@@ -49,7 +49,7 @@
               "categorie": "lamp",
               "naam": "Lamp",
               "omschrijving": "Dit is een lamp",
-              "laatst-uitgevoerde-actie": {
+              "laatstUitgevoerdeActie": {
                 "datum": "19/08/2017",
                 "type": "nazicht",
                 "omschrijving": "Lamp nagekeken"
@@ -77,7 +77,7 @@
             "categorie": "machine",
             "naam": "3D-Printer",
             "omschrijving": "Een van de modernste 3D-printers die er bestaat",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "1/08/2017",
               "type": "Vervanging",
               "omschrijving": "Stukken van de 3D-printer vervangen zodat hij nog beter kan printen"
@@ -95,7 +95,7 @@
             "categorie": "band",
             "naam": "3D-printer Productieband",
             "omschrijving": "Dit is de productieband voor de 3D-printer",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "1/07/2017",
               "type": "nazicht",
               "omschrijving": "Productieband nagekeken"
@@ -123,7 +123,7 @@
             "categorie": "lamp",
             "naam": "Grote lamp",
             "omschrijving": "Grote lamp die de prepress verlicht",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "15/08/2017",
               "type": "nazicht",
               "omschrijving": "Lamp nagekeken"
@@ -141,7 +141,7 @@
             "categorie": "machine",
             "naam": "Prepress",
             "omschrijving": "Dit is de prepress",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "15/08/2017",
               "type": "nazicht",
               "omschrijving": "Prepress nagekeken"
@@ -159,7 +159,7 @@
             "categorie": "band",
             "naam": "Productieband voor de prepress",
             "omschrijving": "Dit is de productieband voor de prepress",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "19/08/2017",
               "type": "nazicht",
               "omschrijving": "Band nagekeken"
@@ -187,7 +187,7 @@
             "categorie": "lamp",
             "naam": "Grote lamp",
             "omschrijving": "Grote lamp die de digitale drukpers verlicht",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "19/05/2017",
               "type": "vervanging",
               "omschrijving": "Lamp vervangen"
@@ -205,7 +205,7 @@
             "categorie": "lamp",
             "naam": "Bureau lamp",
             "omschrijving": "Bureau lamp aan de bureau",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "04/07/2016",
               "type": "nazicht",
               "omschrijving": "Lamp nagekeken"
@@ -223,7 +223,7 @@
             "categorie": "machine",
             "naam": "Digitale drukpers",
             "omschrijving": "Dit is de allernieuwste digitale drukpers",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "1/06/2017",
               "type": "nazicht",
               "omschrijving": "Digitale drukpers nagekeken"
@@ -241,7 +241,7 @@
             "categorie": "band",
             "naam": "Productieband van de digitale drukpers",
             "omschrijving": "Productieband die de digitale drukpers ondersteunt",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "9/08/2017",
               "type": "vervanging",
               "omschrijving": "Bepaalde onderdelen vervangen"
@@ -269,7 +269,7 @@
             "categorie": "lamp",
             "naam": "Lamp magazijn",
             "omschrijving": "Lamp die het magazijn verlicht",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "19/08/2016",
               "type": "nazicht",
               "omschrijving": "Lamp nagekeken"
@@ -287,7 +287,7 @@
             "categorie": "band",
             "naam": "Verpakkingsband",
             "omschrijving": "Band voor het verpakken",
-            "laatst-uitgevoerde-actie": {
+            "laatstUitgevoerdeActie": {
               "datum": "15/08/2017",
               "type": "nazicht",
               "omschrijving": "Verpakkingsband nagekeken"

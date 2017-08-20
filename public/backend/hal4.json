@@ -11,7 +11,7 @@
       "categorie": "lamp",
       "naam": "Grote lamp",
       "omschrijving": "Grote lamp die de digitale drukpers verlicht",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "19/05/2017",
         "type": "vervanging",
         "omschrijving": "Lamp vervangen"
@@ -29,7 +29,7 @@
       "categorie": "lamp",
       "naam": "Bureau lamp",
       "omschrijving": "Bureau lamp aan de bureau",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "04/07/2016",
         "type": "nazicht",
         "omschrijving": "Lamp nagekeken"
@@ -47,7 +47,7 @@
       "categorie": "machine",
       "naam": "Digitale drukpers",
       "omschrijving": "Dit is de allernieuwste digitale drukpers",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "1/06/2017",
         "type": "nazicht",
         "omschrijving": "Digitale drukpers nagekeken"
@@ -65,7 +65,7 @@
       "categorie": "band",
       "naam": "Productieband van de digitale drukpers",
       "omschrijving": "Productieband die de digitale drukpers ondersteunt",
-      "laatst-uitgevoerde-actie": {
+      "laatstUitgevoerdeActie": {
         "datum": "9/08/2017",
         "type": "vervanging",
         "omschrijving": "Bepaalde onderdelen vervangen"

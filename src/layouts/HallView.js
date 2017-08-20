@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class HallView extends React.Component{
 
@@ -9,6 +10,7 @@ class HallView extends React.Component{
 
     componentDidMount()
     {
+        console.log('Hallview props:');
         console.log(this.props);
     }
 
@@ -25,7 +27,7 @@ class HallView extends React.Component{
                     };
                     return (
                         <div key={apparaat.id} style={style}>
-                            <img src={apparaat.imageSrc}/>
+                            <Link to={'/hall/' + this.props.hallInfo.id + '/apparaat/' + apparaat.id}><img src={apparaat.imageSrc}/></Link>
                         </div>
                     );
                 })}
