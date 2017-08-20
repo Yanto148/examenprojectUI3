@@ -10,8 +10,8 @@ class HallView extends React.Component{
 
     componentDidMount()
     {
-        console.log('Hallview props:');
-        console.log(this.props);
+        //console.log('Hallview props:');
+        //console.log(this.props);
     }
 
     render()

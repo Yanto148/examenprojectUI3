@@ -36,6 +36,9 @@ class PlattegrondContainer extends React.Component
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
             .then(() => this.setAantalActies(this.state.hallenSet));
+        console.log('=======================================');
+        console.log('mounting...');
+        console.log('=======================================');
     }
 
     setOppervlaktes(hallen)
