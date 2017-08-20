@@ -22,8 +22,7 @@
         "omschrijving": "Lamp nakijken"
       },
       "x": 5,
-      "y": 5,
-      "imgSrc" : "../assets/icons/small-light-bulb.png"
+      "y": 5
     },
     {
       "id": 42,
@@ -41,8 +40,7 @@
         "omschrijving": "Bureau lamp is aan vervanging toe"
       },
       "x": 150,
-      "y": 150,
-      "imgSrc" : "../assets/icons/small-light-bulb.png"
+      "y": 150
     },
     {
       "id": 43,
@@ -60,8 +58,7 @@
         "omschrijving": "Digitale drukpers moet opnieuw nagekeken worden"
       },
       "x": 20,
-      "y": 20,
-      "imgSrc" : "../assets/icons/conveyor.png"
+      "y": 20
     },
     {
       "id": 44,
@@ -79,8 +76,7 @@
         "omschrijving": "Prodcutieband moet nagekeken worden"
       },
       "x": 250,
-      "y": 250,
-      "imgSrc" : "../assets/icons/assembly-line.png"
+      "y": 250
     }
   ]
 }

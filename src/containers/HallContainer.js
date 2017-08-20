@@ -10,10 +10,7 @@ class HallContainer extends React.Component
         this.state = {
             hallInfo: {},
             apparaten: [],
-            categorien: [],
             style: {},
-            imgSrc: [],
-            positions: []
         }
     }
 
@@ -29,8 +26,7 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
-            .then(() => this.setImgSrc())
-            .then(() => console.log(this.state))
+            .then(() => this.setImgSrc());
     }
 
     setStyle(hal)
@@ -55,13 +51,25 @@ class HallContainer extends React.Component
 
     setImgSrc()
     {
-        this.state.apparaten.map((apparaat, i) => {
-            if (apparaat.categorie === 'machine')
-            {
-                apparaat.imageSrc = "../../public/assets/icons/conveyor.png";
-                return apparaat;
-            }
-        });
+        this.setState((prevState, props) =>
+            this.state.apparaten.map((apparaat, i) => {
+                if (apparaat.categorie === 'machine')
+                {
+                    apparaat.imageSrc = "../../assets/icons/conveyor.png";
+                    return apparaat;
+                }
+                else if (apparaat.categorie === 'lamp')
+                {
+                    apparaat.imageSrc = "../../assets/icons/small-light-bulb.png";
+                    return apparaat;
+                }
+                else if (apparaat.categorie === 'band')
+                {
+                    apparaat.imageSrc = "../../assets/icons/assembly-line.png";
+                    return apparaat;
+                }
+            })
+        );
     }
 
     render()

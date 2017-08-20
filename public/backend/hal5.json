@@ -22,8 +22,7 @@
         "omschrijving": "Lamp nog eens nakijken"
       },
       "x": 250,
-      "y": 150,
-      "imgSrc" : "../assets/icons/small-light-bulb.png"
+      "y": 150
     },
     {
       "id": 52,
@@ -41,8 +40,7 @@
         "omschrijving": "Verpakkingsband opnieuw nakijken"
       },
       "x": 5,
-      "y": 150,
-      "imgSrc" : "../assets/icons/assembly-line.png"
+      "y": 150
     }
   ]
 }

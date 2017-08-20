@@ -22,8 +22,7 @@
         "omschrijving": "Lamp moet binnenkort vervangen worden"
       },
       "x": 50,
-      "y": 150,
-      "imgSrc" : "../assets/icons/small-light-bulb.png"
+      "y": 150
     },
     {
       "id": 32,
@@ -41,8 +40,7 @@
         "omschrijving": "Prepress is dringend aan vervanging toe"
       },
       "x": 100,
-      "y": 150,
-      "imgSrc" : "../assets/icons/conveyor.png"
+      "y": 150
     },
     {
       "id": 33,
@@ -60,8 +58,7 @@
         "omschrijving": "Enkele onderdelen lijken aan vervanging toe, kijk deze extra na"
       },
       "x": 200,
-      "y": 200,
-      "imgSrc" : "../assets/icons/assembly-line.png"
+      "y": 200
     }
   ]
 }
