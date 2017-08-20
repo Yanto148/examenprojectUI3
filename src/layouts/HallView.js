@@ -25,7 +25,7 @@ class HallView extends React.Component{
                     };
                     return (
                         <div key={apparaat.id} style={style}>
-                            <img src={apparaat.imgSrc}/>
+                            <img src={apparaat.imageSrc}/>
                         </div>
                     );
                 })}
