@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React from 'react';
 import * as HallenService from "../service/HallService";
 import Hall from '../layouts/HallView';
 import * as Utils from '../service/Utils';
@@ -87,6 +87,7 @@ class HallContainer extends React.Component
                     apparaat.imageSrc = "../../assets/icons/assembly-line-red.png";
                     return apparaat;
                 }
+                return apparaat;
             })
         );
     }

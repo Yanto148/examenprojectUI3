@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router'
+import React from 'react';
 import * as HallenService from "../service/HallService";
 import Plattegrond from '../layouts/BlueprintView';
 import Lijst from '../layouts/ListView';
@@ -24,7 +23,8 @@ class PlattegrondContainer extends React.Component
             },
             buttonStyle: {
                 textAlign: "center"
-            }
+            },
+            alarm: false,
         }
     }
 
@@ -36,9 +36,6 @@ class PlattegrondContainer extends React.Component
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
             .then(() => this.setAantalActies(this.state.hallenSet));
-        console.log('=======================================');
-        console.log('mounting...');
-        console.log('=======================================');
     }
 
     setOppervlaktes(hallen)
@@ -76,7 +73,16 @@ class PlattegrondContainer extends React.Component
 
     setStyles(hallen)
     {
+        // TODO remove style array, lift into state.
+        console.log(this.state.alarm);
+        console.log('Setting styles');
         hallen.forEach((hal) => {
+            let backgroundColor;
+            if (this.state.alarm)
+                backgroundColor = 'red';
+            else
+                backgroundColor = 'white';
+
             let style = {
                 left: hal.x,
                 top: hal.y,
@@ -84,15 +90,16 @@ class PlattegrondContainer extends React.Component
                 height: hal.height,
                 border: "1px solid black",
                 position: "absolute",
-                textAlign: "center"
+                textAlign: "center",
+                backgroundColor: backgroundColor
             };
-            this.setState((prevState, props) => {this.state.styles.push(style)})
+            this.setState((prevState, props) => {this.state.styles.push(style)});
         });
+        console.log(this.state.styles);
     }
 
     switchLayout()
     {
-        console.log('Switching layouts');
         if (this.state.activePage === 'Plattegrond')
         {
             this.setState({activePage : 'Lijst'});
@@ -103,15 +110,29 @@ class PlattegrondContainer extends React.Component
         }
     }
 
+    slaAlarm(event)
+    {
+        event.preventDefault();
+        if (this.state.alarm === true)
+        {
+            this.setState({alarm: false});
+        }
+        else if (this.state.alarm === false)
+        {
+            this.setState({alarm: true})
+        }
+        this.setStyles(this.state.hallenSet);
+    }
+
     render() {
         let partial;
         if(this.state.activePage === 'Plattegrond')
         {
-            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()}/>;
+            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={(e) => this.slaAlarm(e)}/>;
         }
         else if (this.state.activePage === 'Lijst')
         {
-            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()}/>;
+            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={(e) => this.slaAlarm(e)}/>;
         }
 
         return (

@@ -4,7 +4,6 @@ import App from './App';
 import PlattegrondContainer from './containers/HallAggregateContainer';
 import HallContainer from './containers/HallContainer';
 import DeviceContainer from './containers/DeviceContainer';
-import Reservations from './Reservations';
 
 import { Router, Route, IndexRoute,browserHistory } from 'react-router';
 
@@ -16,7 +15,6 @@ ReactDOM.render(
                 <IndexRoute component={HallContainer}/>
                 <Route path='apparaat/:deviceId' component={DeviceContainer}/>
             </Route>
-            <Route path="reservation" component={Reservations}/>
         </Route>
     </Router>
     , document.getElementById('root')

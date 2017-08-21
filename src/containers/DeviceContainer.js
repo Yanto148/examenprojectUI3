@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React from 'react';
 import * as HallService from '../service/HallService';
 import DeviceView from '../layouts/DeviceView';
 
@@ -8,23 +8,23 @@ class DeviceContainer extends React.Component
     {
         super(props);
         this.state = {
-            device: {},
             id: '',
             categorie: '',
             naam: '',
             omschrijving: '',
-            // laatstUitgevoerdeActie: {},
             laatstUitgevoerdeActieDatum: '',
             laatstUitgevoerdeActieType: '',
             laatstUitgevoerdeActieOmschrijving: '',
-            // eerstVolgendeActie: {},
             eerstVolgendeActieDatum: '',
             eerstVolgendeActieType: '',
             eerstVolgendeActieOmschrijving: '',
+            formValid: true,
+            naamMsg: '',
+            datumMsgLaatsteActie: '',
+            datumMsgEersteActie: '',
+            typeMsgLaatsteActie: '',
+            typeMsgEersteActie: ''
         };
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleLaatsteActieChange = this.handleLaatsteActieChange.bind(this);
-        // this.handleEerstVolgendeActieChange = this.handleEerstVolgendeActieChange.bind(this);
     }
 
     componentDidMount()
@@ -34,16 +34,13 @@ class DeviceContainer extends React.Component
                 hal.apparaten.forEach((apparaat) => {
                     if (apparaat.id == this.props.params.deviceId)
                     {
-                        this.setState({device: apparaat});
-                        this.setState({naam: apparaat.id});
-                        this.setState({naam: apparaat.categorie});
+                        this.setState({id: apparaat.id});
+                        this.setState({categorie: apparaat.categorie});
                         this.setState({naam: apparaat.naam});
-                        this.setState({naam: apparaat.omschrijving});
-                        // this.setState({laatstUitgevoerdeActie: apparaat.laatstUitgevoerdeActie});
+                        this.setState({omschrijving: apparaat.omschrijving});
                         this.setState({laatstUitgevoerdeActieDatum: apparaat.laatstUitgevoerdeActie.datum});
                         this.setState({laatstUitgevoerdeActieType: apparaat.laatstUitgevoerdeActie.type});
                         this.setState({laatstUitgevoerdeActieOmschrijving: apparaat.laatstUitgevoerdeActie.omschrijving});
-                        // this.setState({eerstVolgendeActie: apparaat.eerstVolgendeActie});
                         this.setState({eerstVolgendeActieDatum: apparaat.eerstVolgendeActie.datum});
                         this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
                         this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
@@ -52,46 +49,98 @@ class DeviceContainer extends React.Component
             });
     }
 
-    actionCompleted()
+    actionCompleted(event)
     {
+        event.preventDefault();
         const eerstVolgendeActieDatum = this.state.eerstVolgendeActieDatum;
         const eerstVolgendeActieType = this.state.eerstVolgendeActieType;
         const eerstVolgendeActieOmschrijving = this.state.eerstVolgendeActieOmschrijving;
-        this.setState({laatstUitgevoerdeActieDatum : this.state.eerstVolgendeActieDatum});
+        this.setState({laatstUitgevoerdeActieDatum : eerstVolgendeActieDatum});
         this.setState({laatstUitgevoerdeActieType : eerstVolgendeActieType});
         this.setState({laatstUitgevoerdeActieOmschrijving : eerstVolgendeActieOmschrijving});
     }
 
     handleChange(event)
     {
-        this.setState({device: {[event.target.name] : event.target.value}});
+        // this.setState({device: {[event.target.name] : event.target.value}});
         this.setState({[event.target.name] : event.target.value});
     }
-    //
-    // handleLaatsteActieChange(event)
-    // {
-    //     this.setState({laatstUitgevoerdeActie: {[event.target.name] : event.target.value}});
-    // }
-    //
-    // handleEerstVolgendeActieChange(event)
-    // {
-    //     this.setState({eerstVolgendeActie: {[event.target.name] : event.target.value}});
-    // }
+
+    validateForm(event)
+    {
+        if (this.state.naam.length > 100 || this.state.naam === '')
+        {
+            this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'});
+            this.setState({formValid: false});
+        }
+
+        let regexp = new RegExp("^[0-9]?[0-9]\/[0-9]?[0-9]\/[0-9][0-9][0-9][0-9]$");
+        if (!regexp.test(this.state.laatstUitgevoerdeActieDatum))
+        {
+            this.setState({datumMsgLaatsteActie: 'Datum moet van dd/mm/yyyy formaat zijn'});
+            this.setState({formValid: false});
+        }
+        if (!regexp.test(this.state.eerstVolgendeActieDatum))
+        {
+            this.setState({datumMsgEersteActie: 'Datum moet van dd/mm/yyyy formaat zijn'});
+            this.setState({formValid: false});
+        }
+
+        if (this.state.formValid)
+        {
+            this.clearErrorMessages();
+            this.handleSubmit();
+        }
+    }
+
+    clearErrorMessages()
+    {
+        this.setState({datumMsgLaatsteActie: ''});
+        this.setState({datumMsgEersteActie: ''});
+        this.setState({typeMsgLaatsteActie: ''});
+        this.setState({typeMsgEersteActie: ''});
+    }
+
+    handleSubmit()
+    {
+        const payload = {
+            id: this.state.id,
+            categorie: this.state.categorie,
+            naam: this.state.naam,
+            omschrijving: this.state.omschrijving,
+            laatstUitgevoerdeActie: {
+                datum: this.state.laatstUitgevoerdeActieDatum,
+                type: this.state.laatstUitgevoerdeActieType,
+                omschrijving: this.state.laatstUitgevoerdeActieOmschrijving
+            },
+            eerstVolgendeActie: {
+                datum: this.state.eerstVolgendeActieDatum,
+                type: this.state.eerstVolgendeActieType,
+                omschrijving: this.state.eerstVolgendeActieOmschrijving
+            }
+        };
+
+        const url = 'http://localhost:4200/hal/' + this.props.params.hallId + '/apparaat/' + this.state.id;
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: payload
+        })
+            .then(() => this.props.router.push('/hall/' + this.props.params.hallId))
+            .catch((err) => console.log(err));
+    }
 
     render()
     {
         return <DeviceView
             {...this.state}
-            actionCompleted={() => this.actionCompleted()}
+            actionCompleted={(e) => this.actionCompleted(e)}
             handleChange={(e) => this.handleChange(e)}
+            validateForm = {(e) => this.validateForm(e)}
         />
     }
 }
 
 export default DeviceContainer;
-
-/*
- {handleChange={(e) => this.handleChange(e)}}
-{handleLaatsteActieChange = {(e) => this.handleLaatsteActieChange(e)}}
-{handleEerstVolgendeActieChange = {(e) => this.handleEerstVolgendeActieChange(e)}}
- */

@@ -2,18 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class HallView extends React.Component{
-
-    constructor(props)
-    {
-        super(props);
-    }
-
-    componentDidMount()
-    {
-        //console.log('Hallview props:');
-        //console.log(this.props);
-    }
-
     render()
     {
         return(
@@ -27,7 +15,7 @@ class HallView extends React.Component{
                     };
                     return (
                         <div key={apparaat.id} style={style}>
-                            <Link to={'/hall/' + this.props.hallInfo.id + '/apparaat/' + apparaat.id}><img src={apparaat.imageSrc}/></Link>
+                            <Link to={'/hall/' + this.props.hallInfo.id + '/apparaat/' + apparaat.id}><img src={apparaat.imageSrc} alt=""/></Link>
                         </div>
                     );
                 })}
