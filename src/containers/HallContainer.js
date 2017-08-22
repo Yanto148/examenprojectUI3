@@ -12,6 +12,10 @@ class HallContainer extends React.Component
             hallInfo: {},
             apparaten: [],
             style: {},
+            buttonStyle: {
+                textAlign: "center"
+            },
+            alarm: false
         }
     }
 
@@ -27,22 +31,36 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
-            .then(() => this.setImgSrc());
+            .then(() => this.setImgSrc())
+            .then(console.log(this.props));
     }
 
     setStyle(hal)
     {
+        let style;
         let width = hal.width.split("px")[0] * 2;
         let height = hal.height.split("px")[0] * 2;
-        let style = {
+
+        let backgroundColor;
+        if (this.state.alarm)
+            backgroundColor = 'orange';
+        else
+            backgroundColor = 'white';
+
+        style = {
             width: width,
             height: height,
             border: "1px solid black",
             position: "relative",
             margin: "0 auto",
-            textAlign: "center"
+            textAlign: "center",
+            backgroundColor: backgroundColor
         };
+        this.setState((prevState, props) => {
+            this.state.style = style;
+        });
         this.setState({style: style});
+        console.log(this.state.alarm);
     }
 
     setApparaten(hal)
@@ -92,10 +110,18 @@ class HallContainer extends React.Component
         );
     }
 
+    slaAlarm()
+    {
+        this.setState({alarm: !this.state.alarm},
+            function(){
+                this.setStyle(this.state.hallInfo);
+            });
+    }
+
     render()
     {
         return(
-          <Hall {...this.state}/>
+          <Hall {...this.state } slaAlarm={() => this.slaAlarm()}/>
         );
     }
 }

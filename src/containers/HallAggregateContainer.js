@@ -3,9 +3,14 @@ import * as HallenService from "../service/HallService";
 import Plattegrond from '../layouts/BlueprintView';
 import Lijst from '../layouts/ListView';
 import * as Utils from '../service/Utils';
+import { Link } from 'react-router';
 
 class PlattegrondContainer extends React.Component
 {
+    // TODO implement redux to keep state between blueprint hall alarm and detail view alarm: https://css-tricks.com/learning-react-redux/
+
+
+
     constructor(props)
     {
         super(props);
@@ -25,6 +30,7 @@ class PlattegrondContainer extends React.Component
                 textAlign: "center"
             },
             alarm: false,
+            backgroundSwitcher: false
         }
     }
 
@@ -32,7 +38,7 @@ class PlattegrondContainer extends React.Component
     {
         HallenService.getHallenFromBackend()
             .then(hallen => {this.setState({hallenSet: hallen})})
-            .then(() => this.setStyles(this.state.hallenSet))
+            .then(() => this.setStyles(this.state.hallenSet, 'white'))
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
             .then(() => this.setAantalActies(this.state.hallenSet));
@@ -71,31 +77,24 @@ class PlattegrondContainer extends React.Component
         });
     }
 
-    setStyles(hallen)
+    setStyles(hallen, backgroundColor)
     {
-        // TODO remove style array, lift into state.
-        console.log(this.state.alarm);
-        console.log('Setting styles');
-        hallen.forEach((hal) => {
-            let backgroundColor;
-            if (this.state.alarm)
-                backgroundColor = 'red';
-            else
-                backgroundColor = 'white';
-
-            let style = {
-                left: hal.x,
-                top: hal.y,
-                width: hal.width,
-                height: hal.height,
-                border: "1px solid black",
-                position: "absolute",
-                textAlign: "center",
-                backgroundColor: backgroundColor
-            };
-            this.setState((prevState, props) => {this.state.styles.push(style)});
+        let styles = [];
+        this.setState({styles: styles}, function () {   // Zie https://stackoverflow.com/questions/34800893/reactjs-need-to-click-twice-to-set-state-and-run-function
+            hallen.forEach((hal) => {
+                let style = {
+                    left: hal.x,
+                    top: hal.y,
+                    width: hal.width,
+                    height: hal.height,
+                    border: "1px solid black",
+                    position: "absolute",
+                    textAlign: "center",
+                    backgroundColor: backgroundColor
+                };
+                this.setState((prevState, props) => {this.state.styles.push(style)});
+            });
         });
-        console.log(this.state.styles);
     }
 
     switchLayout()
@@ -110,29 +109,40 @@ class PlattegrondContainer extends React.Component
         }
     }
 
-    slaAlarm(event)
+    slaAlarm()
     {
-        event.preventDefault();
-        if (this.state.alarm === true)
-        {
-            this.setState({alarm: false});
-        }
-        else if (this.state.alarm === false)
-        {
-            this.setState({alarm: true})
-        }
-        this.setStyles(this.state.hallenSet);
+        let backgroundColor = '';
+
+        clearInterval(this.interval);
+        this.setState({alarm: !this.state.alarm}, function () {
+            if (this.state.alarm)
+            {
+                this.interval = setInterval(() => {
+                    if (this.state.backgroundSwitcher)
+                        backgroundColor = 'white';
+                    else
+                        backgroundColor = 'red';
+                    this.setState({backgroundSwitcher: !this.state.backgroundSwitcher});
+                    this.setStyles(this.state.hallenSet, backgroundColor);
+                    console.log(this.state);
+                }, 1000);
+            }
+            else
+            {
+                this.setStyles(this.state.hallenSet, 'white');
+            }
+        });
     }
 
     render() {
         let partial;
         if(this.state.activePage === 'Plattegrond')
         {
-            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={(e) => this.slaAlarm(e)}/>;
+            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()}/>;
         }
         else if (this.state.activePage === 'Lijst')
         {
-            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={(e) => this.slaAlarm(e)}/>;
+            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()}/>;
         }
 
         return (
