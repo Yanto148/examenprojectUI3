@@ -3,7 +3,7 @@ import * as HallService from '../service/HallService';
 import DeviceView from '../layouts/DeviceView';
 
 import store from '../store';
-import setDeviceId from '../actions/device-actions';
+import setDeviceDetails from '../actions/device-actions';
 import { connect } from 'react-redux';
 
 class DeviceContainer extends React.Component
@@ -38,10 +38,11 @@ class DeviceContainer extends React.Component
                 hal.apparaten.forEach((apparaat) => {
                     if (apparaat.id == this.props.params.deviceId)
                     {
-                        let deviceId = {};
-                        deviceId.deviceId = apparaat.id;
+                        let device = {};
+                        device.deviceId = apparaat.id;
+                        //console.log(device);
                         //this.setState({id: apparaat.id});
-                        store.dispatch(setDeviceId(deviceId));
+                        store.dispatch(setDeviceDetails(device));
                         this.setState({categorie: apparaat.categorie});
                         this.setState({naam: apparaat.naam});
                         this.setState({omschrijving: apparaat.omschrijving});
@@ -54,6 +55,7 @@ class DeviceContainer extends React.Component
                     }
                 }) ;
             });
+        console.log(this.props);
     }
 
     actionCompleted(event)
@@ -143,7 +145,7 @@ class DeviceContainer extends React.Component
     {
         return <DeviceView
             {...this.state}
-            {...this.props.deviceId}
+            {...this.props.deviceDetails}
             actionCompleted={(e) => this.actionCompleted(e)}
             handleChange={(e) => this.handleChange(e)}
             validateForm = {(e) => this.validateForm(e)}
@@ -153,7 +155,7 @@ class DeviceContainer extends React.Component
 
 const mapStateToProps = function(store) {
     return {
-        deviceId: store.deviceState.deviceId
+        deviceDetails: store.deviceState.deviceDetails
     };
 };
 

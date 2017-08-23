@@ -124,7 +124,7 @@ class PlattegrondContainer extends React.Component
                         backgroundColor = 'red';
                     this.setState({backgroundSwitcher: !this.state.backgroundSwitcher});
                     this.setStyles(this.state.hallenSet, backgroundColor);
-                    console.log(this.state);
+                    //console.log(this.state);
                 }, 1000);
             }
             else

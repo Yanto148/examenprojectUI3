@@ -1,16 +1,17 @@
 import * as types from '../actions/action-types';
 
 const initialState =
-    {
-    deviceId: {}
+{
+    deviceDetails: {}
 };
 
 const deviceReducer = function (state = initialState, action)
 {
     switch (action.type)
     {
-        case types.SET_DEVICE_ID:
-            return Object.assign({}, state, {deviceId: action.deviceId})
+        case types.SET_DEVICE_DETAILS:
+            //console.log(action);
+            return Object.assign({}, state, {deviceDetails: action.deviceDetails})
     }
 
     return state;

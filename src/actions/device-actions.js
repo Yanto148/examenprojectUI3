@@ -1,11 +1,11 @@
 import * as types from '../actions/action-types'
 
-export function setDeviceId(deviceId)
+export function setDeviceDetails(deviceDetails)
 {
     return {
-        type: types.SET_DEVICE_ID,
-        deviceId
+        type: types.SET_DEVICE_DETAILS,
+        deviceDetails
     };
 }
 
-export default setDeviceId;
+export default setDeviceDetails;

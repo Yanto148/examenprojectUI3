@@ -1,1 +1,1 @@
-export const SET_DEVICE_ID = 'SET_DEVICE_ID';
+export const SET_DEVICE_DETAILS = 'SET_DEVICE_DETAILS';

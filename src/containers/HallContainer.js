@@ -31,8 +31,8 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
-            .then(() => this.setImgSrc())
-            .then(console.log(this.props));
+            .then(() => this.setImgSrc());
+            //.then(console.log(this.props));
     }
 
     setStyle(hal)

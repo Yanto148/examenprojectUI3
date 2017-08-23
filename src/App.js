@@ -2,18 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class App extends React.Component {
-
-    constructor(props)
-    {
-        super(props)
-        this.state = {
-            hallo: 'HALLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
-        }
-    }
-
     componentDidMount()
     {
-        console.log(this.props.children)
+        //console.log(this.props.children)
     }
 
     render() {
