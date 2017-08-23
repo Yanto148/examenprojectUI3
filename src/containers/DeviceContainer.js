@@ -40,18 +40,26 @@ class DeviceContainer extends React.Component
                     {
                         let device = {};
                         device.deviceId = apparaat.id;
-                        //console.log(device);
-                        //this.setState({id: apparaat.id});
+                        device.categorie = apparaat.categorie;
+                        device.naam = apparaat.naam;
+                        device.omschrijving = apparaat.omschrijving;
+                        device.laatstUitgevoerdeActieDatum = apparaat.laatstUitgevoerdeActie.datum;
+                        device.laatstUitgevoerdeActieType = apparaat.laatstUitgevoerdeActie.type;
+                        device.laatstUitgevoerdeActieOmschrijving = apparaat.laatstUitgevoerdeActie.omschrijving;
+                        device.eerstVolgendeActieDatum = apparaat.eerstVolgendeActie.datum;
+                        device.eerstVolgendeActieType = apparaat.eerstVolgendeActie.type;
+                        device.eerstVolgendeActieOmschrijving = apparaat.eerstVolgendeActie.omschrijving;
+
                         store.dispatch(setDeviceDetails(device));
-                        this.setState({categorie: apparaat.categorie});
-                        this.setState({naam: apparaat.naam});
-                        this.setState({omschrijving: apparaat.omschrijving});
-                        this.setState({laatstUitgevoerdeActieDatum: apparaat.laatstUitgevoerdeActie.datum});
-                        this.setState({laatstUitgevoerdeActieType: apparaat.laatstUitgevoerdeActie.type});
-                        this.setState({laatstUitgevoerdeActieOmschrijving: apparaat.laatstUitgevoerdeActie.omschrijving});
-                        this.setState({eerstVolgendeActieDatum: apparaat.eerstVolgendeActie.datum});
-                        this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
-                        this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
+                        // this.setState({categorie: apparaat.categorie});
+                        // this.setState({naam: apparaat.naam});
+                        // this.setState({omschrijving: apparaat.omschrijving});
+                        // this.setState({laatstUitgevoerdeActieDatum: apparaat.laatstUitgevoerdeActie.datum});
+                        // this.setState({laatstUitgevoerdeActieType: apparaat.laatstUitgevoerdeActie.type});
+                        // this.setState({laatstUitgevoerdeActieOmschrijving: apparaat.laatstUitgevoerdeActie.omschrijving});
+                        // this.setState({eerstVolgendeActieDatum: apparaat.eerstVolgendeActie.datum});
+                        // this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
+                        // this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
                     }
                 }) ;
             });
