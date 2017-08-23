@@ -2,13 +2,17 @@ import React from 'react';
 import * as HallService from '../service/HallService';
 import DeviceView from '../layouts/DeviceView';
 
+import store from '../store';
+import setDeviceId from '../actions/device-actions';
+import { connect } from 'react-redux';
+
 class DeviceContainer extends React.Component
 {
     constructor(props)
     {
         super(props);
         this.state = {
-            id: '',
+            //id: '',
             categorie: '',
             naam: '',
             omschrijving: '',
@@ -34,7 +38,10 @@ class DeviceContainer extends React.Component
                 hal.apparaten.forEach((apparaat) => {
                     if (apparaat.id == this.props.params.deviceId)
                     {
-                        this.setState({id: apparaat.id});
+                        let deviceId = {};
+                        deviceId.deviceId = apparaat.id;
+                        //this.setState({id: apparaat.id});
+                        store.dispatch(setDeviceId(deviceId));
                         this.setState({categorie: apparaat.categorie});
                         this.setState({naam: apparaat.naam});
                         this.setState({omschrijving: apparaat.omschrijving});
@@ -104,7 +111,7 @@ class DeviceContainer extends React.Component
     handleSubmit()
     {
         const payload = {
-            id: this.state.id,
+            //id: this.state.id,
             categorie: this.state.categorie,
             naam: this.state.naam,
             omschrijving: this.state.omschrijving,
@@ -136,6 +143,7 @@ class DeviceContainer extends React.Component
     {
         return <DeviceView
             {...this.state}
+            {...this.props.deviceId}
             actionCompleted={(e) => this.actionCompleted(e)}
             handleChange={(e) => this.handleChange(e)}
             validateForm = {(e) => this.validateForm(e)}
@@ -143,4 +151,10 @@ class DeviceContainer extends React.Component
     }
 }
 
-export default DeviceContainer;
+const mapStateToProps = function(store) {
+    return {
+        deviceId: store.deviceState.deviceId
+    };
+};
+
+export default connect(mapStateToProps)(DeviceContainer);

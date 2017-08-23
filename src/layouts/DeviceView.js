@@ -7,7 +7,7 @@ class DeviceView extends React.Component
     return(
         <div className="App">
             <form>
-                <p>Id: {this.props.id}</p>
+                <p>Id: {this.props.deviceId}</p>
                 <p>Categorie: {this.props.categorie}</p>
                 <label>Naam:</label> <input id="naam" name="naam" type="text" value={this.props.naam} onChange={(e) => this.props.handleChange(e)}/>
                 <p>{this.props.naamMsg}</p>
