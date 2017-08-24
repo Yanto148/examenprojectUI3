@@ -39,31 +39,24 @@ class DeviceContainer extends React.Component
                     if (apparaat.id == this.props.params.deviceId)
                     {
                         let device = {};
-                        device.deviceId = apparaat.id;
-                        device.categorie = apparaat.categorie;
-                        device.naam = apparaat.naam;
-                        device.omschrijving = apparaat.omschrijving;
-                        device.laatstUitgevoerdeActieDatum = apparaat.laatstUitgevoerdeActie.datum;
-                        device.laatstUitgevoerdeActieType = apparaat.laatstUitgevoerdeActie.type;
-                        device.laatstUitgevoerdeActieOmschrijving = apparaat.laatstUitgevoerdeActie.omschrijving;
-                        device.eerstVolgendeActieDatum = apparaat.eerstVolgendeActie.datum;
-                        device.eerstVolgendeActieType = apparaat.eerstVolgendeActie.type;
-                        device.eerstVolgendeActieOmschrijving = apparaat.eerstVolgendeActie.omschrijving;
+                        device.initialValues = {
+                            deviceId : apparaat.id,
+                            categorie : apparaat.categorie,
+                            naam : apparaat.naam,
+                            omschrijving : apparaat.omschrijving,
+                            laatstUitgevoerdeActieDatum : apparaat.laatstUitgevoerdeActie.datum,
+                            laatstUitgevoerdeActieType : apparaat.laatstUitgevoerdeActie.type,
+                            laatstUitgevoerdeActieOmschrijving : apparaat.laatstUitgevoerdeActie.omschrijving,
+                            eerstVolgendeActieDatum : apparaat.eerstVolgendeActie.datum,
+                            eerstVolgendeActieType : apparaat.eerstVolgendeActie.type,
+                            eerstVolgendeActieOmschrijving : apparaat.eerstVolgendeActie.omschrijving
+                        };
 
                         store.dispatch(setDeviceDetails(device));
-                        // this.setState({categorie: apparaat.categorie});
-                        // this.setState({naam: apparaat.naam});
-                        // this.setState({omschrijving: apparaat.omschrijving});
-                        // this.setState({laatstUitgevoerdeActieDatum: apparaat.laatstUitgevoerdeActie.datum});
-                        // this.setState({laatstUitgevoerdeActieType: apparaat.laatstUitgevoerdeActie.type});
-                        // this.setState({laatstUitgevoerdeActieOmschrijving: apparaat.laatstUitgevoerdeActie.omschrijving});
-                        // this.setState({eerstVolgendeActieDatum: apparaat.eerstVolgendeActie.datum});
-                        // this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
-                        // this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
                     }
                 }) ;
             });
-        console.log(this.props);
+        //console.log(this.props);
     }
 
     actionCompleted(event)
@@ -72,15 +65,39 @@ class DeviceContainer extends React.Component
         const eerstVolgendeActieDatum = this.state.eerstVolgendeActieDatum;
         const eerstVolgendeActieType = this.state.eerstVolgendeActieType;
         const eerstVolgendeActieOmschrijving = this.state.eerstVolgendeActieOmschrijving;
-        this.setState({laatstUitgevoerdeActieDatum : eerstVolgendeActieDatum});
-        this.setState({laatstUitgevoerdeActieType : eerstVolgendeActieType});
-        this.setState({laatstUitgevoerdeActieOmschrijving : eerstVolgendeActieOmschrijving});
+        let device = {
+            laatstUitgevoerdeActieDatum: eerstVolgendeActieDatum,
+            laatstUitgevoerdeActieType: eerstVolgendeActieType,
+            laatstUitgevoerdeActieOmschrijving: eerstVolgendeActieOmschrijving
+        };
+
+        store.dispatch(setDeviceDetails(device));
+        //console.log(this.props);
+        // this.setState({laatstUitgevoerdeActieDatum : eerstVolgendeActieDatum});
+        // this.setState({laatstUitgevoerdeActieType : eerstVolgendeActieType});
+        // this.setState({laatstUitgevoerdeActieOmschrijving : eerstVolgendeActieOmschrijving});
     }
 
     handleChange(event)
     {
         // this.setState({device: {[event.target.name] : event.target.value}});
-        this.setState({[event.target.name] : event.target.value});
+        // let device = {
+        //     [event.target.name]: event.target.value
+        // };
+        //event.preventDefault();
+        //let nameOfChanged = event.target.name;
+        //console.log(nameOfChanged);
+        //this.props.deviceDetails[nameOfChanged] = event.target.value;
+        let device = this.props.deviceDetails;
+        device[event.target.name] = event.target.value;
+        //console.log(this.props);
+        console.log(device);
+        store.dispatch(setDeviceDetails(device));
+        // this.interval = setInterval(() => {
+        //     console.log(this.props);
+        // }, 1000);
+
+        //this.setState({[event.target.name] : event.target.value});
     }
 
     validateForm(event)
@@ -118,36 +135,50 @@ class DeviceContainer extends React.Component
         this.setState({typeMsgEersteActie: ''});
     }
 
-    handleSubmit()
-    {
-        const payload = {
-            //id: this.state.id,
-            categorie: this.state.categorie,
-            naam: this.state.naam,
-            omschrijving: this.state.omschrijving,
-            laatstUitgevoerdeActie: {
-                datum: this.state.laatstUitgevoerdeActieDatum,
-                type: this.state.laatstUitgevoerdeActieType,
-                omschrijving: this.state.laatstUitgevoerdeActieOmschrijving
-            },
-            eerstVolgendeActie: {
-                datum: this.state.eerstVolgendeActieDatum,
-                type: this.state.eerstVolgendeActieType,
-                omschrijving: this.state.eerstVolgendeActieOmschrijving
-            }
-        };
+    // handleSubmit(values)
+    // {
+    //     // const payload = {
+    //     //     //id: this.state.id,
+    //     //     categorie: this.state.categorie,
+    //     //     naam: this.state.naam,
+    //     //     omschrijving: this.state.omschrijving,
+    //     //     laatstUitgevoerdeActie: {
+    //     //         datum: this.state.laatstUitgevoerdeActieDatum,
+    //     //         type: this.state.laatstUitgevoerdeActieType,
+    //     //         omschrijving: this.state.laatstUitgevoerdeActieOmschrijving
+    //     //     },
+    //     //     eerstVolgendeActie: {
+    //     //         datum: this.state.eerstVolgendeActieDatum,
+    //     //         type: this.state.eerstVolgendeActieType,
+    //     //         omschrijving: this.state.eerstVolgendeActieOmschrijving
+    //     //     }
+    //     // };
+    //
+    //     const url = 'http://localhost:4200/hal/' + this.props.params.hallId + '/apparaat/' + this.state.id;
+    //     fetch(url, {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         method: 'POST',
+    //         body: values
+    //     })
+    //         .then(() => this.props.router.push('/hall/' + this.props.params.hallId))
+    //         .catch((err) => console.log(values));
+    // }
 
+    handleSubmit = (values) => {
+        console.log(values);
         const url = 'http://localhost:4200/hal/' + this.props.params.hallId + '/apparaat/' + this.state.id;
         fetch(url, {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-            body: payload
+            body: values
         })
             .then(() => this.props.router.push('/hall/' + this.props.params.hallId))
             .catch((err) => console.log(err));
-    }
+    };
 
     render()
     {
@@ -157,13 +188,15 @@ class DeviceContainer extends React.Component
             actionCompleted={(e) => this.actionCompleted(e)}
             handleChange={(e) => this.handleChange(e)}
             validateForm = {(e) => this.validateForm(e)}
+            handleSubmit = {this.handleSubmit}
         />
     }
 }
 
 const mapStateToProps = function(store) {
     return {
-        deviceDetails: store.deviceState.deviceDetails
+        deviceDetails: store.deviceState.deviceDetails,
+        initialValues: store.deviceState.deviceDetails
     };
 };
 
