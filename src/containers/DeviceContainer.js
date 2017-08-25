@@ -68,16 +68,22 @@ class DeviceContainer extends React.Component
 
     validateForm(event)
     {
+        //  TODO checkIfValid doortrekken
+        event.preventDefault();
         if (this.state.naam.length > 100 || this.state.naam === '')
         {
-            this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'});
+            this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'}, function () {
+                console.log(this.state);
+            });
             this.setState({formValid: false});
         }
 
         let regexp = new RegExp("^[0-9]?[0-9]\/[0-9]?[0-9]\/[0-9][0-9][0-9][0-9]$");
         if (!regexp.test(this.state.laatstUitgevoerdeActieDatum))
         {
-            this.setState({datumMsgLaatsteActie: 'Datum moet van dd/mm/yyyy formaat zijn'});
+            this.setState({datumMsgLaatsteActie: 'Datum moet van dd/mm/yyyy formaat zijn', formValid: false}, function () {
+                this.checkIfValid();
+            });
             this.setState({formValid: false});
         }
         if (!regexp.test(this.state.eerstVolgendeActieDatum))
@@ -86,13 +92,17 @@ class DeviceContainer extends React.Component
             this.setState({formValid: false});
         }
 
+
+    }
+
+    checkIfValid()
+    {
         if (this.state.formValid)
         {
             this.clearErrorMessages();
             this.handleSubmit();
         }
     }
-
     clearErrorMessages()
     {
         this.setState({datumMsgLaatsteActie: ''});

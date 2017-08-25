@@ -15,6 +15,7 @@ function PlattegrondView(props)
                         <p>Aantal apparaten: {props.aantalApparaten[i]}</p>
                         <p>Aantal uit te voeren acties: {props.aantalActies[i]}</p>
                         <p><Link to={'/hall/' + hal.id}>Details</Link></p>
+                        <button onClick={() => props.slaAlarmHal(hal.id)}>Sla alarm!</button>
                     </div>
                     )}
                 </div>

@@ -7,10 +7,6 @@ import { Link } from 'react-router';
 
 class PlattegrondContainer extends React.Component
 {
-    // TODO implement redux to keep state between blueprint hall alarm and detail view alarm: https://css-tricks.com/learning-react-redux/
-
-
-
     constructor(props)
     {
         super(props);
@@ -30,8 +26,8 @@ class PlattegrondContainer extends React.Component
                 textAlign: "center"
             },
             alarm: false,
-            backgroundSwitcher: false
-        }
+            backgroundSwitcher: false,
+        };
     }
 
     componentDidMount()
@@ -41,7 +37,8 @@ class PlattegrondContainer extends React.Component
             .then(() => this.setStyles(this.state.hallenSet, 'white'))
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
-            .then(() => this.setAantalActies(this.state.hallenSet));
+            .then(() => this.setAantalActies(this.state.hallenSet))
+            .then(() => {console.log('======='); console.log(this.props)});
     }
 
     setOppervlaktes(hallen)
@@ -109,6 +106,10 @@ class PlattegrondContainer extends React.Component
         }
     }
 
+    slaAlarmHal(hallId) {
+        this.props.setAlarm(hallId);
+    }
+
     slaAlarm()
     {
         let backgroundColor = '';
@@ -138,11 +139,11 @@ class PlattegrondContainer extends React.Component
         let partial;
         if(this.state.activePage === 'Plattegrond')
         {
-            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()}/>;
+            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()} slaAlarmHal = {(hallId) => this.slaAlarmHal(hallId)}/>;
         }
         else if (this.state.activePage === 'Lijst')
         {
-            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()}/>;
+            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.props.slaAlarm()}/>;
         }
 
         return (
