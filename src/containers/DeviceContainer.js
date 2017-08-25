@@ -56,22 +56,23 @@ class DeviceContainer extends React.Component
                     }
                 }) ;
             });
-        //console.log(this.props);
+        console.log(this.props);
     }
 
-    actionCompleted(event)
+    actionCompleted()
     {
-        event.preventDefault();
-        const eerstVolgendeActieDatum = this.state.eerstVolgendeActieDatum;
-        const eerstVolgendeActieType = this.state.eerstVolgendeActieType;
-        const eerstVolgendeActieOmschrijving = this.state.eerstVolgendeActieOmschrijving;
-        let device = {
-            laatstUitgevoerdeActieDatum: eerstVolgendeActieDatum,
-            laatstUitgevoerdeActieType: eerstVolgendeActieType,
-            laatstUitgevoerdeActieOmschrijving: eerstVolgendeActieOmschrijving
-        };
+        this.props.change("naam", "Hallo");
+        // event.preventDefault();
+        // const eerstVolgendeActieDatum = this.state.eerstVolgendeActieDatum;
+        // const eerstVolgendeActieType = this.state.eerstVolgendeActieType;
+        // const eerstVolgendeActieOmschrijving = this.state.eerstVolgendeActieOmschrijving;
+        // let device = {
+        //     laatstUitgevoerdeActieDatum: eerstVolgendeActieDatum,
+        //     laatstUitgevoerdeActieType: eerstVolgendeActieType,
+        //     laatstUitgevoerdeActieOmschrijving: eerstVolgendeActieOmschrijving
+        // };
 
-        store.dispatch(setDeviceDetails(device));
+        //store.dispatch(setDeviceDetails(device));
         //console.log(this.props);
         // this.setState({laatstUitgevoerdeActieDatum : eerstVolgendeActieDatum});
         // this.setState({laatstUitgevoerdeActieType : eerstVolgendeActieType});
@@ -88,16 +89,17 @@ class DeviceContainer extends React.Component
         //let nameOfChanged = event.target.name;
         //console.log(nameOfChanged);
         //this.props.deviceDetails[nameOfChanged] = event.target.value;
-        let device = this.props.deviceDetails;
-        device[event.target.name] = event.target.value;
         //console.log(this.props);
-        console.log(device);
-        store.dispatch(setDeviceDetails(device));
         // this.interval = setInterval(() => {
         //     console.log(this.props);
         // }, 1000);
-
         //this.setState({[event.target.name] : event.target.value});
+
+        // let device = this.props.deviceDetails;
+        // device[event.target.name] = event.target.value;
+        // console.log(device);
+        // store.dispatch(setDeviceDetails(device));
+
     }
 
     validateForm(event)
@@ -166,8 +168,9 @@ class DeviceContainer extends React.Component
     //         .catch((err) => console.log(values));
     // }
 
+
     handleSubmit = (values) => {
-        console.log(values);
+        console.log(values.datumMsgEersteActie);
         const url = 'http://localhost:4200/hal/' + this.props.params.hallId + '/apparaat/' + this.state.id;
         fetch(url, {
             headers: {
@@ -185,7 +188,7 @@ class DeviceContainer extends React.Component
         return <DeviceView
             {...this.state}
             {...this.props.deviceDetails}
-            actionCompleted={(e) => this.actionCompleted(e)}
+            actionCompleted={ this.actionCompleted }
             handleChange={(e) => this.handleChange(e)}
             validateForm = {(e) => this.validateForm(e)}
             handleSubmit = {this.handleSubmit}

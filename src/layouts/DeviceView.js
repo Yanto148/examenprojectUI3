@@ -48,6 +48,7 @@ import { Field, reduxForm } from 'redux-form';
 class DeviceView extends Component {
     render() {
         const { handleSubmit } = this.props;
+        const { actionCompleted } = this.props;
         return (
             <form onSubmit={handleSubmit}>
                 <div>
@@ -89,6 +90,7 @@ class DeviceView extends Component {
                     <Field id="eerstVolgendeActieOmschrijving" name="eerstVolgendeActieOmschrijving"
                            component="input" type="text"/>
                 </div>
+                <button onClick={ actionCompleted }>Actie uitgevoerd</button>
                 <button type="submit">Submit</button>
             </form>
         )
