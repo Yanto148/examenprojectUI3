@@ -62,18 +62,16 @@ class DeviceContainer extends React.Component
 
     handleChange(event)
     {
-        // this.setState({device: {[event.target.name] : event.target.value}});
         this.setState({[event.target.name] : event.target.value});
     }
 
     validateForm(event)
     {
-        //  TODO checkIfValid doortrekken
         event.preventDefault();
         if (this.state.naam.length > 100 || this.state.naam === '')
         {
             this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'}, function () {
-                console.log(this.state);
+                this.checkIfValid();
             });
             this.setState({formValid: false});
         }
@@ -88,11 +86,12 @@ class DeviceContainer extends React.Component
         }
         if (!regexp.test(this.state.eerstVolgendeActieDatum))
         {
-            this.setState({datumMsgEersteActie: 'Datum moet van dd/mm/yyyy formaat zijn'});
+            this.setState({datumMsgEersteActie: 'Datum moet van dd/mm/yyyy formaat zijn'}, function () {
+                this.checkIfValid();
+            });
             this.setState({formValid: false});
         }
-
-
+        this.checkIfValid();
     }
 
     checkIfValid()
@@ -103,6 +102,7 @@ class DeviceContainer extends React.Component
             this.handleSubmit();
         }
     }
+
     clearErrorMessages()
     {
         this.setState({datumMsgLaatsteActie: ''});
@@ -136,7 +136,7 @@ class DeviceContainer extends React.Component
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-            body: payload
+            body: JSON.stringify(payload)
         })
             .then(() => this.props.router.push('/hall/' + this.props.params.hallId))
             .catch((err) => console.log(err));

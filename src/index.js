@@ -4,6 +4,7 @@ import App from './App';
 import PlattegrondContainer from './containers/HallAggregateContainer';
 import HallContainer from './containers/HallContainer';
 import DeviceContainer from './containers/DeviceContainer';
+import ActionContainer from './containers/ActionsContainer';
 
 import { Router, Route, IndexRoute,browserHistory } from 'react-router';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
                 <IndexRoute component={HallContainer}/>
                 <Route path='apparaat/:deviceId' component={DeviceContainer}/>
             </Route>
+            <Route path="acties" component={ActionContainer}/>
         </Route>
     </Router>
     , document.getElementById('root')

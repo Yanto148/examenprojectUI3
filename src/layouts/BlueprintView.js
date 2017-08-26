@@ -6,7 +6,8 @@ function PlattegrondView(props)
     return(
         <div className="App">
             <p style={props.buttonStyle}><button onClick={() => props.switchLayout()}>Lijst</button></p>
-            <p style={props.buttonStyle}><button onClick={() => props.slaAlarm()}>{props.alarm ? 'Zet alarm uit' : 'Sla alarm!'}</button></p>
+            {/*<p style={props.buttonStyle}><button onClick={() => props.slaAlarm()}>{props.alarm ? 'Zet alarm uit' : 'Sla alarm!'}</button></p>*/}
+            <p style={props.buttonStyle}><button onClick={() => props.slaAlarm()}>Alarm!</button></p>
             <div style={props.containerStyle}>
                 {props.hallenSet.map((hal, i) =>
                     <div key={i} style={props.styles[i]}>
@@ -15,7 +16,7 @@ function PlattegrondView(props)
                         <p>Aantal apparaten: {props.aantalApparaten[i]}</p>
                         <p>Aantal uit te voeren acties: {props.aantalActies[i]}</p>
                         <p><Link to={'/hall/' + hal.id}>Details</Link></p>
-                        <button onClick={() => props.slaAlarmHal(hal.id)}>Sla alarm!</button>
+                        <button onClick={() => props.slaAlarmHal(i)}>Alarm!</button>
                     </div>
                     )}
                 </div>

@@ -3,7 +3,6 @@ import * as HallenService from "../service/HallService";
 import Plattegrond from '../layouts/BlueprintView';
 import Lijst from '../layouts/ListView';
 import * as Utils from '../service/Utils';
-import { Link } from 'react-router';
 
 class PlattegrondContainer extends React.Component
 {
@@ -13,6 +12,7 @@ class PlattegrondContainer extends React.Component
         this.state = {
             hallenSet: [],
             styles: [],
+            alarmsPerHall: [],
             oppervlaktes: [],
             aantalApparaten: [],
             aantalActies: [],
@@ -27,18 +27,23 @@ class PlattegrondContainer extends React.Component
             },
             alarm: false,
             backgroundSwitcher: false,
+            windowWidth: 0
         };
     }
 
     componentDidMount()
     {
-        HallenService.getHallenFromBackend()
+        HallenService.getHallsFromBackend()
             .then(hallen => {this.setState({hallenSet: hallen})})
-            .then(() => this.setStyles(this.state.hallenSet, 'white'))
+            .then(() => this.setStyles(this.state.hallenSet, this.props.achtergrondKleurHall))
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
             .then(() => this.setAantalActies(this.state.hallenSet))
-            .then(() => {console.log('======='); console.log(this.props)});
+            .then(() => this.setAlarmsPerHall(this.state.hallenSet));
+
+        window.addEventListener("resize", (() => {
+            this.setState({windowWidth : window.innerWidth});
+        }));
     }
 
     setOppervlaktes(hallen)
@@ -77,7 +82,7 @@ class PlattegrondContainer extends React.Component
     setStyles(hallen, backgroundColor)
     {
         let styles = [];
-        this.setState({styles: styles}, function () {   // Zie https://stackoverflow.com/questions/34800893/reactjs-need-to-click-twice-to-set-state-and-run-function
+        this.setState({styles: styles}, function () {
             hallen.forEach((hal) => {
                 let style = {
                     left: hal.x,
@@ -94,6 +99,18 @@ class PlattegrondContainer extends React.Component
         });
     }
 
+    setAlarmsPerHall(hallen)
+    {
+        for(let i = 0; i < hallen.length; i++)
+        {
+            let alarm = {
+                index: i,
+                alarm: false
+            };
+            this.setState((prevState, props) => {this.state.alarmsPerHall.push(alarm)});
+        }
+    }
+
     switchLayout()
     {
         if (this.state.activePage === 'Plattegrond')
@@ -106,8 +123,37 @@ class PlattegrondContainer extends React.Component
         }
     }
 
-    slaAlarmHal(hallId) {
-        this.props.setAlarm(hallId);
+    slaAlarmHal(i)
+    {
+        clearInterval(this.intervalHall);
+        const styles = this.state.styles;
+        const style = styles[i];
+
+        const alarms = this.state.alarmsPerHall;
+        const alarmObject = alarms[i];
+        alarmObject.alarm = !alarmObject.alarm;
+
+        if (alarmObject.alarm)
+        {
+            let backGroundSwitcher = false;
+            this.intervalHall = setInterval(() => {
+                if (backGroundSwitcher)
+                {
+                    style.backgroundColor = 'white';
+                }
+                else
+                {
+                    style.backgroundColor = 'orange';
+                }
+                this.setState({styles: styles});
+                backGroundSwitcher = !backGroundSwitcher;
+            }, 1000);
+        }
+        else
+        {
+            style.backgroundColor = 'white';
+            this.setState({alarmsPerHall: alarms, styles: styles});
+        }
     }
 
     slaAlarm()
@@ -125,7 +171,7 @@ class PlattegrondContainer extends React.Component
                         backgroundColor = 'red';
                     this.setState({backgroundSwitcher: !this.state.backgroundSwitcher});
                     this.setStyles(this.state.hallenSet, backgroundColor);
-                    console.log(this.state);
+                    //console.log(this.state);
                 }, 1000);
             }
             else
@@ -137,14 +183,17 @@ class PlattegrondContainer extends React.Component
 
     render() {
         let partial;
-        if(this.state.activePage === 'Plattegrond')
+        let width = window.innerWidth;
+        const breakpoint = 480;
+        if (this.state.activePage === 'Lijst' ||width < breakpoint)
         {
-            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()} slaAlarmHal = {(hallId) => this.slaAlarmHal(hallId)}/>;
+            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()}/>;
         }
-        else if (this.state.activePage === 'Lijst')
+        else if(this.state.activePage === 'Plattegrond')
         {
-            partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.props.slaAlarm()}/>;
+            partial = <Plattegrond {...this.state} switchLayout={() => this.switchLayout()} slaAlarm={() => this.slaAlarm()} slaAlarmHal = {(i) => this.slaAlarmHal(i)}/>;
         }
+
 
         return (
             <div>

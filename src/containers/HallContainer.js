@@ -15,7 +15,7 @@ class HallContainer extends React.Component
             buttonStyle: {
                 textAlign: "center"
             },
-            alarm: false
+            alarm: false,
         }
     }
 
@@ -27,40 +27,32 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => {
-                this.setStyle(hal);
+                this.setStyle(hal, this.state.backgroundColor);
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
-            .then(() => this.setImgSrc())
-            .then(console.log(this.props));
+            .then(() => this.setImgSrc());
     }
 
-    setStyle(hal)
+    setStyle(hal, backgroundColor)
     {
         let style;
         let width = hal.width.split("px")[0] * 2;
         let height = hal.height.split("px")[0] * 2;
 
-        let backgroundColor;
-        if (this.state.alarm)
-            backgroundColor = 'orange';
-        else
-            backgroundColor = 'white';
+        this.setState({backgroundColor: backgroundColor}, function () {
+            style = {
+                width: width,
+                height: height,
+                border: "1px solid black",
+                position: "relative",
+                margin: "0 auto",
+                textAlign: "center",
+                backgroundColor: this.state.backgroundColor
+            };
 
-        style = {
-            width: width,
-            height: height,
-            border: "1px solid black",
-            position: "relative",
-            margin: "0 auto",
-            textAlign: "center",
-            backgroundColor: backgroundColor
-        };
-        this.setState((prevState, props) => {
-            this.state.style = style;
-        });
-        this.setState({style: style});
-        console.log(this.state.alarm);
+            this.setState({style: style});
+        })
     }
 
     setApparaten(hal)
@@ -110,18 +102,36 @@ class HallContainer extends React.Component
         );
     }
 
-    slaAlarm()
+    slaAlarm(id)
     {
+        clearInterval(this.intervall);
+        let backgroundColor = '';
         this.setState({alarm: !this.state.alarm},
             function(){
-                this.setStyle(this.state.hallInfo);
+                if (this.state.alarm)
+                {
+                    let backgroundSwitcher = false;
+                    this.intervall = setInterval(() => {
+                        if (backgroundSwitcher)
+                            backgroundColor = 'white';
+                        else
+                            backgroundColor = 'orange';
+                        this.setStyle(this.state.hallInfo, backgroundColor);
+                        backgroundSwitcher = !backgroundSwitcher
+                    }, 1000)
+                }
+
+                else
+                {
+                    this.setStyle(this.state.hallInfo, 'white');
+                }
             });
     }
 
     render()
     {
         return(
-          <Hall {...this.state } slaAlarm={() => this.slaAlarm()}/>
+          <Hall {...this.state } slaAlarm={(id) => this.slaAlarm(id)}/>
         );
     }
 }

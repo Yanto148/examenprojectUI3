@@ -6,7 +6,7 @@ class HallView extends React.Component{
     {
         return(
             <div className="App">
-                <p style={this.props.buttonStyle}><button onClick={() => this.props.slaAlarm()}>{this.props.alarm ? 'Zet alarm uit' : 'Sla alarm!'}</button></p>
+                <p style={this.props.buttonStyle}><button onClick={(hallId) => this.props.slaAlarm(this.props.hallInfo.id)}>Alarm!</button></p>
                 <div style={this.props.style}>
                     {this.props.hallInfo.name}
                     {this.props.apparaten.map(apparaat => {

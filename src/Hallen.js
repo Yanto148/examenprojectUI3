@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router'
 import './App.css';
 import * as HallenService from "./service/HallService";
 
@@ -16,7 +15,7 @@ class Hallen extends React.Component
 
     componentDidMount()
     {
-        HallenService.getHallenFromBackend()
+        HallenService.getHallsFromBackend()
             .then(hallen => {this.setState({hallenSet: hallen})})
             .then(() => this.setStyles(this.state.hallenSet));
     }
