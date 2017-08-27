@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import PlattegrondContainer from './containers/HallAggregateContainer';
-import HallContainer from './containers/HallContainer';
+import PlattegrondContainer from './containers/AggregateHallContainer';
+import HallContainer from './containers/SingleHallContainer';
 import DeviceContainer from './containers/DeviceContainer';
 import ActionContainer from './containers/ActionsContainer';
 import 'bootstrap/dist/css/bootstrap.css';
