@@ -19,7 +19,8 @@ class PlattegrondContainer extends React.Component
             activePage: 'Plattegrond',
             containerStyle : {
                 position: "relative",
-                width: "1000px",
+                width: "100%",
+                maxWidth: "1000px",
                 margin: "20px auto"
             },
             buttonStyle: {
@@ -35,7 +36,7 @@ class PlattegrondContainer extends React.Component
     {
         HallenService.getHallsFromBackend()
             .then(hallen => {this.setState({hallenSet: hallen})})
-            .then(() => this.setStyles(this.state.hallenSet, this.props.achtergrondKleurHall))
+            .then(() => this.setStyles(this.state.hallenSet, '#E1E1E1'))
             .then(() => this.setOppervlaktes(this.state.hallenSet))
             .then(() => this.setAantalApparaten(this.state.hallenSet))
             .then(() => this.setAantalActies(this.state.hallenSet))
@@ -139,7 +140,7 @@ class PlattegrondContainer extends React.Component
             this.intervalHall = setInterval(() => {
                 if (backGroundSwitcher)
                 {
-                    style.backgroundColor = 'white';
+                    style.backgroundColor = '#E1E1E1';
                 }
                 else
                 {
@@ -151,7 +152,7 @@ class PlattegrondContainer extends React.Component
         }
         else
         {
-            style.backgroundColor = 'white';
+            style.backgroundColor = '#E1E1E1';
             this.setState({alarmsPerHall: alarms, styles: styles});
         }
     }
@@ -166,7 +167,7 @@ class PlattegrondContainer extends React.Component
             {
                 this.interval = setInterval(() => {
                     if (this.state.backgroundSwitcher)
-                        backgroundColor = 'white';
+                        backgroundColor = '#E1E1E1';
                     else
                         backgroundColor = 'red';
                     this.setState({backgroundSwitcher: !this.state.backgroundSwitcher});
@@ -176,7 +177,7 @@ class PlattegrondContainer extends React.Component
             }
             else
             {
-                this.setStyles(this.state.hallenSet, 'white');
+                this.setStyles(this.state.hallenSet, '#E1E1E1');
             }
         });
     }
@@ -184,7 +185,7 @@ class PlattegrondContainer extends React.Component
     render() {
         let partial;
         let width = window.innerWidth;
-        const breakpoint = 480;
+        const breakpoint = 600;
         if (this.state.activePage === 'Lijst' ||width < breakpoint)
         {
             partial = <Lijst {...this.state} switchLayout={() => this.switchLayout()}/>;

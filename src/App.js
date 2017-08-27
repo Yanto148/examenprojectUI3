@@ -1,28 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router';
+import './App.css';
+import DocumentMeta from 'react-document-meta';
 
 class App extends React.Component {
+
     render() {
+
+        const meta = {
+            title: 'Factory',
+            meta: {
+                name: "viewport",
+                content: "width=device-width, initial-scale=1.0"
+            }
+        };
+
         return (
             <div>
-                <header>
-                    <h1>Fabriek</h1>
-                </header>
-                <nav>
-                    <ul>
-                        <li><Link to="/" activeClassName="active">Home</Link></li>
-                        <li><Link to="/acties" activeClassName="active">Eerstvolgende acties</Link></li>
+                <DocumentMeta {...meta}/>
+                <nav className="navbar navbar-light navbar-expand">
+                    <div className="container" id="navigation">
+                    <Link className="navbar-brand" to="/">Factory</Link>
+                    <ul className="navbar-nav">
+                         <li className="nav-item">
+                            <Link className="nav-link" to="/">Home</Link>
+                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/acties">Eerstvolgende Acties</Link>
+                        </li>
                     </ul>
+                    </div>
                 </nav>
                 <main>
-                    {React.cloneElement(
-                        this.props.children,
-                        {...this.state}
-                    )}
+                    {this.props.children}
                 </main>
-                <footer>
-                    <div>Icons made by <a href="https://www.flaticon.com/authors/designmodo" title="Designmodo">Designmodo</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-                </footer>
             </div>
         )
     };

@@ -1,24 +1,78 @@
-.App {
+#navigation
+{
+  justify-content: flex-start;
+}
+
+.buttonGroup
+{
+  margin: 10px;
+  width: 120px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.formButton
+{
+    margin: 10px;
+    width: 150px;
+    text-align: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#button.focus, #button:focus
+{
+    color: #fff;
+    border: none;
+    box-shadow: none;
 }
 
-.App-intro {
-  font-size: large;
+nav
+{
+    /*background-color: #e3f2fd;*/
+    background-color: #E1E1E1;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.formTitle
+{
+    margin: 20px auto;
+}
+
+.readonly
+{
+    background-color: #E9ECEF !important;   /* Hellaas is de important selector nodig om bootstrap te overschrijven */
+}
+
+.content
+{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.vervanging
+{
+    background-color: #F5C6CB;
+}
+
+.nazicht
+{
+    background-color: #FFEEBA;
+}
+
+.invalid
+{
+    color: red;
+}
+
+.hallName
+{
+    font-weight: normal;
+}
+
+.hallsList
+{
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+h2 img
+{
+    margin-right: 20px;
 }

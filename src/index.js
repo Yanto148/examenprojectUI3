@@ -5,6 +5,7 @@ import PlattegrondContainer from './containers/HallAggregateContainer';
 import HallContainer from './containers/HallContainer';
 import DeviceContainer from './containers/DeviceContainer';
 import ActionContainer from './containers/ActionsContainer';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { Router, Route, IndexRoute,browserHistory } from 'react-router';
 

@@ -27,7 +27,7 @@ class HallContainer extends React.Component
                 return hal;
             })
             .then((hal) => {
-                this.setStyle(hal, this.state.backgroundColor);
+                this.setStyle(hal, '#E1E1E1');
                 return hal;
             })
             .then((hal) => this.setApparaten(hal))
@@ -113,7 +113,7 @@ class HallContainer extends React.Component
                     let backgroundSwitcher = false;
                     this.intervall = setInterval(() => {
                         if (backgroundSwitcher)
-                            backgroundColor = 'white';
+                            backgroundColor = '#E1E1E1';
                         else
                             backgroundColor = 'orange';
                         this.setStyle(this.state.hallInfo, backgroundColor);
@@ -123,7 +123,7 @@ class HallContainer extends React.Component
 
                 else
                 {
-                    this.setStyle(this.state.hallInfo, 'white');
+                    this.setStyle(this.state.hallInfo, '#E1E1E1');
                 }
             });
     }

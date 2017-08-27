@@ -1,5 +1,6 @@
 import React from 'react';
 import * as HallService from '../service/HallService';
+import * as Utils from '../service/Utils';
 import DeviceView from '../layouts/DeviceView';
 
 class DeviceContainer extends React.Component
@@ -8,8 +9,10 @@ class DeviceContainer extends React.Component
     {
         super(props);
         this.state = {
+            hallId: this.props.params.hallId,
             id: '',
             categorie: '',
+            icon: '',
             naam: '',
             omschrijving: '',
             laatstUitgevoerdeActieDatum: '',
@@ -45,8 +48,41 @@ class DeviceContainer extends React.Component
                         this.setState({eerstVolgendeActieType: apparaat.eerstVolgendeActie.type});
                         this.setState({eerstVolgendeActieOmschrijving: apparaat.eerstVolgendeActie.omschrijving});
                     }
-                }) ;
-            });
+                });
+            })
+            .then(() => this.setIcon());
+    }
+
+    setIcon()
+    {
+        let device = this.state;
+        device.eerstVolgendeActie = {};
+        device.eerstVolgendeActie.datum = this.state.eerstVolgendeActieDatum;
+
+        if (this.state.categorie === 'machine' && !Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/conveyor.png'});
+        }
+        else if (this.state.categorie === 'machine' && Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/conveyor-red.png'});
+        }
+        else if (this.state.categorie === 'lamp' && !Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/small-light-bulb.png'});
+        }
+        else if (this.state.categorie === 'lamp' && Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/small-light-bulb-red.png'});
+        }
+        else if (this.state.categorie === 'band' && !Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/assembly-line.png'});
+        }
+        else if (this.state.categorie === 'band' && Utils.checkIfNextActionIn24Hours(device))
+        {
+            this.setState({icon: '../../assets/icons/assembly-line-red.png'});
+        }
     }
 
     actionCompleted(event)
@@ -68,36 +104,27 @@ class DeviceContainer extends React.Component
     validateForm(event)
     {
         event.preventDefault();
+        this.clearErrorMessages();
+        let regexp = new RegExp("^[0-9]?[0-9]\/[0-9]?[0-9]\/[0-9][0-9][0-9][0-9]$");
+
         if (this.state.naam.length > 100 || this.state.naam === '')
         {
-            this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'}, function () {
-                this.checkIfValid();
-            });
+            this.setState({naamMsg: 'Verplicht veld, mag niet meer dan 100 karakters bevatten'});
             this.setState({formValid: false});
         }
-
-        let regexp = new RegExp("^[0-9]?[0-9]\/[0-9]?[0-9]\/[0-9][0-9][0-9][0-9]$");
-        if (!regexp.test(this.state.laatstUitgevoerdeActieDatum))
+        else if (!regexp.test(this.state.laatstUitgevoerdeActieDatum))
         {
-            this.setState({datumMsgLaatsteActie: 'Datum moet van dd/mm/yyyy formaat zijn', formValid: false}, function () {
-                this.checkIfValid();
-            });
+            this.setState({datumMsgLaatsteActie: 'Datum moet van dd/mm/yyyy formaat zijn', formValid: false});
             this.setState({formValid: false});
         }
-        if (!regexp.test(this.state.eerstVolgendeActieDatum))
+        else if (!regexp.test(this.state.eerstVolgendeActieDatum))
         {
-            this.setState({datumMsgEersteActie: 'Datum moet van dd/mm/yyyy formaat zijn'}, function () {
-                this.checkIfValid();
-            });
+            this.setState({datumMsgEersteActie: 'Datum moet van dd/mm/yyyy formaat zijn'});
             this.setState({formValid: false});
         }
-        this.checkIfValid();
-    }
-
-    checkIfValid()
-    {
-        if (this.state.formValid)
+        else
         {
+            this.setState({formValid: true});
             this.clearErrorMessages();
             this.handleSubmit();
         }
@@ -149,6 +176,7 @@ class DeviceContainer extends React.Component
             actionCompleted={(e) => this.actionCompleted(e)}
             handleChange={(e) => this.handleChange(e)}
             validateForm = {(e) => this.validateForm(e)}
+            handleSubmit = {(e) => this.handleSubmit(e)}
         />
     }
 }
